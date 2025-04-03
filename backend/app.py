@@ -15,7 +15,8 @@ model = pickle.load(open('backend/model.pkl', 'rb'))
 def home():
     return render_template('index.html')
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['GET', 'POST'])
+
 def predict():
     try:
         # Get data from the form
