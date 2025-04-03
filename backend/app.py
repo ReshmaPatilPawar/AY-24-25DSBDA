@@ -1,9 +1,9 @@
 from flask import Flask, request, jsonify, render_template
+app = Flask(__name__)
 import pickle
 import numpy as np
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module="sklearn")
-
 
 import os
 app = Flask(__name__, template_folder=os.path.join(os.getcwd(), 'backend', 'templates'))
@@ -31,11 +31,9 @@ def predict():
 
         # Return the predicted price
         return jsonify({'predicted_price': round(prediction[0], 2)})
+
     except Exception as e:
         return jsonify({'error': str(e)})
 
 if __name__ == '__main__':
     app.run(debug=True)
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=False)
-

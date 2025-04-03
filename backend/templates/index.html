@@ -8,7 +8,7 @@
 <body>
     <div class="container">
         <h2>Predict Housing Price</h2>
-        <form id="predictionForm">
+        <form id="predictionForm" method="POST">
             <label>Lot Size: <input type="number" name="lotsize" required></label>
             <label>Bedrooms: <input type="number" name="bedrooms" required></label>
             <label>Bathrooms: <input type="number" name="bathrms" required></label>
@@ -26,6 +26,11 @@
     </div>
 
     <script>
+        const response = await fetch('https://your-render-backend-url/predict', {
+    method: 'POST',
+    body: new URLSearchParams(formData)
+});
+
         const form = document.getElementById('predictionForm');
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -45,6 +50,14 @@
                 resultDiv.classList.add('error');
             }
         });
+        fetch('/predict', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ feature: 'value' })
+}).then(response => response.text())
+  .then(data => console.log(data));
     </script>
 </body>
 </html>
