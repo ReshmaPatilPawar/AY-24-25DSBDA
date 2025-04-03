@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: housing-price-prediction-backend
+    env: python
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: gunicorn -w 4 -b 0.0.0.0:5000 app:app
+    envVars:
+      - key: PORT
+        value: 5000
+    pythonVersion: 3.9
+    workingDirectory: backend
