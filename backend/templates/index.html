@@ -8,7 +8,7 @@
 <body>
     <div class="container">
         <h2>Predict Housing Price</h2>
-        <form id="predictionForm" method="POST">
+        <form id="predictionForm">
             <label>Lot Size: <input type="number" name="lotsize" required></label>
             <label>Bedrooms: <input type="number" name="bedrooms" required></label>
             <label>Bathrooms: <input type="number" name="bathrms" required></label>
@@ -26,38 +26,30 @@
     </div>
 
     <script>
-        const response = await fetch('https://your-render-backend-url/predict', {
-    method: 'POST',
-    body: new URLSearchParams(formData)
-});
-
         const form = document.getElementById('predictionForm');
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-
             const formData = new FormData(form);
-            const response = await fetch('/predict', {
-                method: 'POST',
-                body: new URLSearchParams(formData)
-            });
-            const result = await response.json();
-            const resultDiv = document.getElementById('result');
-            if (result.predicted_price) {
-                resultDiv.textContent = `Predicted Price: $${result.predicted_price}`;
-                resultDiv.classList.remove('error');
-            } else {
-                resultDiv.textContent = `Error: ${result.error}`;
-                resultDiv.classList.add('error');
+
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    body: new URLSearchParams(formData)
+                });
+
+                const result = await response.json();
+                const resultDiv = document.getElementById('result');
+                if (result.predicted_price) {
+                    resultDiv.textContent = `Predicted Price: $${result.predicted_price}`;
+                    resultDiv.classList.remove('error');
+                } else {
+                    resultDiv.textContent = `Error: ${result.error}`;
+                    resultDiv.classList.add('error');
+                }
+            } catch (err) {
+                console.error('Error:', err);
             }
         });
-        fetch('/predict', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ feature: 'value' })
-}).then(response => response.text())
-  .then(data => console.log(data));
     </script>
 </body>
 </html>
