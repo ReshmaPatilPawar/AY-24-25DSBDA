@@ -1,0 +1,10 @@
+# {
+#   "Temperature": 23.5,
+#   "Humidity": 45,
+#   "WindSpeed": 2.3,
+#   "GeneralDiffuseFlows": 120,
+#   "DiffuseFlows": 80,
+#   "Hour": 14,
+#   "Day": 5,
+#   "Month": 4
+# }
