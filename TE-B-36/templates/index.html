@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Video Game Sales Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    /* Base Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #1c1c1e, #2c3e50);
+      font-family: 'Poppins', sans-serif;
+      color: #f4f4f4;
+      text-align: center;
+      animation: fadeIn 0.8s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Container */
+    .container {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      width: 90%;
+      max-width: 400px;
+      animation: slideUp 0.8s ease-out;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Headings */
+    h2 {
+      margin-bottom: 20px;
+      font-size: 26px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    /* Form Inputs */
+    input {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 8px 0;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #f4f4f4;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+
+    input:focus {
+      background: rgba(255, 255, 255, 0.2);
+      outline: none;
+      border-color: #3498db;
+    }
+
+    /* Button */
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #2980b9;
+    }
+
+    /* Result Text */
+    #result {
+      margin-top: 18px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #ecf0f1;
+      word-break: break-word;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .container {
+        padding: 25px 20px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      input, button {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      #result {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Video Game Sales Prediction</h2>
+    <form id="predict-form">
+      <input type="text" id="platform" placeholder="Platform" required>
+      <input type="number" id="year" placeholder="Year" required>
+      <input type="text" id="genre" placeholder="Genre" required>
+      <input type="text" id="publisher" placeholder="Publisher" required>
+      <input type="number" step="0.01" id="na_sales" placeholder="NA Sales" required>
+      <input type="number" step="0.01" id="eu_sales" placeholder="EU Sales" required>
+      <input type="number" step="0.01" id="jp_sales" placeholder="JP Sales" required>
+      <input type="number" step="0.01" id="other_sales" placeholder="Other Sales" required>
+      <button type="submit">Predict</button>
+    </form>
+    <h3 id="result"></h3>
+  </div>
+
+  <script>
+    document.getElementById("predict-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      let data = {
+        features: [
+          document.getElementById("platform").value.trim(),
+          parseInt(document.getElementById("year").value),
+          document.getElementById("genre").value.trim(),
+          document.getElementById("publisher").value.trim(),
+          parseFloat(document.getElementById("na_sales").value),
+          parseFloat(document.getElementById("eu_sales").value),
+          parseFloat(document.getElementById("jp_sales").value),
+          parseFloat(document.getElementById("other_sales").value)
+        ]
+      };
+
+      fetch("/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          document.getElementById("result").innerText = "Error: " + data.error;
+        } else {
+          document.getElementById("result").innerText = "Predicted Global Sales: " + data.predicted_global_sales;
+        }
+      })
+      .catch(error => {
+        document.getElementById("result").innerText = "Error connecting to server!";
+        console.error("Error:", error);
+      });
+    });
+  </script>
+</body>
+</html>
