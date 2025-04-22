@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Approval Checker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body.dark-mode {
+            background-color: #121212;
+            color: #f1f1f1;
+        }
+        .dark-mode .card, .dark-mode .modal-content {
+            background-color: #1e1e1e;
+            color: #f1f1f1;
+        }
+        .dark-mode .form-control, .dark-mode .form-select {
+            background-color: #2c2c2c;
+            color: #f1f1f1;
+            border-color: #555;
+        }
+        .dark-mode .form-control::placeholder {
+            color: #aaa;
+        }
+        .dark-mode .form-label {
+            color: #ddd;
+        }
+
+        .form-select, .form-control {
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        .form-select:nth-child(odd), .form-control:nth-child(odd) {
+            animation-delay: 0.3s;
+        }
+        .form-select:nth-child(even), .form-control:nth-child(even) {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #loader {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body class="transition">
+    <div class="container-fluid mt-5 d-flex justify-content-center">
+        <div class="card shadow p-4 mx-auto w-100" style="max-width: 960px;">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="text-center mb-0" style="color: inherit;">Loan Approval Prediction Form</h2>
+                <button class="btn btn-sm btn-outline-secondary" onclick="toggleDarkMode()">🌓</button>
+            </div>
+            <form id="loanForm" action="/predict_form" method="post">
+                <div class="row mb-3">
+                    <div class="col">
+                        <label class="form-label">👤 Gender</label>
+                        <select name="Gender" class="form-select" required>
+                            <option value="0">Female</option>
+                            <option value="1">Male</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label class="form-label">💍 Married</label>
+                        <select name="Married" class="form-select" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label class="form-label">👶 Dependents</label>
+                        <select name="Dependents" class="form-select" required>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3+</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label class="form-label">🎓 Education</label>
+                        <select name="Education" class="form-select" required>
+                            <option value="0">Graduate</option>
+                            <option value="1">Not Graduate</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label class="form-label">💼 Self Employed</label>
+                        <select name="Self_Employed" class="form-select" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label class="form-label">💰 Applicant Income</label>
+                        <input type="number" name="ApplicantIncome" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label class="form-label">🤝 Coapplicant Income</label>
+                        <input type="number" name="CoapplicantIncome" class="form-control" required>
+                    </div>
+                    <div class="col">
+                        <label class="form-label">🏦 Loan Amount</label>
+                        <input type="number" name="LoanAmount" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label class="form-label">📆 Loan Term (in days)</label>
+                        <input type="number" name="Loan_Amount_Term" class="form-control" required>
+                    </div>
+                    <div class="col">
+                        <label class="form-label">📊 Credit History</label>
+                        <select name="Credit_History" class="form-select" required>
+                            <option value="1">Good</option>
+                            <option value="0">Bad</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">🏠 Property Area</label>
+                    <select name="Property_Area" class="form-select" required>
+                        <option value="0">Rural</option>
+                        <option value="1">Semiurban</option>
+                        <option value="2">Urban</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Check Eligibility</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="loader">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    {% if prediction %}
+<!-- Modal -->
+<div class="modal fade show" id="resultModal" tabindex="-1" style="display: block; background: rgba(0,0,0,0.5); animation: fadeIn 0.4s ease-in-out;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Loan Prediction Result</h5>
+                <button type="button" class="btn-close" onclick="document.getElementById('resultModal').style.display='none'"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p class="fw-bold" style="color: {% if 'Approved' in prediction %}#27ae60{% else %}#e74c3c{% endif %};">
+                    {% if 'Approved' in prediction %}✅{% else %}❌{% endif %} {{ prediction }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+    <script>
+        // Sync dark mode with system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Dark mode toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            // Save the user's dark mode preference
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
+        }
+
+        // Retrieve user's saved preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Show loader on submit
+        document.getElementById("loanForm").addEventListener("submit", function () {
+            document.getElementById("loader").style.display = "block";
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
