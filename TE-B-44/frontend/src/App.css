@@ -1,0 +1,81 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f7f9fc;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Container */
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+/* Titles */
+.title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Textarea */
+.input-box {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: none;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+/* Button */
+.predict-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.predict-btn:hover {
+  background-color: #0056b3;
+}
+
+.predict-btn:disabled {
+  background-color: #9ec4f8;
+  cursor: not-allowed;
+}
+
+/* Result */
+.result-box {
+  margin-top: 30px;
+  background-color: #f1f7ff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.result-box h2 {
+  margin-bottom: 10px;
+  color: #007bff;
+}

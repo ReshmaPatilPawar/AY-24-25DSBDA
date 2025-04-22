@@ -1,0 +1,101 @@
+RecipeID,Ingredients,Category,Cuisine
+1,"flour, sugar, butter, eggs",Dessert,American
+2,"tomato, basil, mozzarella, olive oil",Appetizer,Italian
+3,"chicken, curry spices, coconut milk",Main Course,Indian
+4,"beef, onion, garlic, soy sauce",Main Course,Chinese
+5,"cucumber, lettuce, feta cheese, olives",Salad,Greek
+6,"flour, cinnamon, sugar, butter",Dessert,French
+7,"rice, curry powder, chicken, carrots",Main Course,Thai
+8,"pasta, cheese, tomato sauce, oregano",Main Course,Italian
+9,"fish, lemon, olive oil, parsley",Main Course,Mediterranean
+10,"avocado, bread, olive oil, pepper",Breakfast,Mexican
+11,"potatoes, garlic, olive oil, rosemary",Side Dish,French
+12,"eggs, milk, flour, sugar",Breakfast,American
+13,"banana, yogurt, honey, milk",Beverage,Mediterranean
+14,"broccoli, bell peppers, soy sauce",Side Dish,Chinese
+15,"lettuce, croutons, Caesar dressing, parmesan cheese",Salad,American
+16,"ground beef, burger buns, ketchup, cheese",Snack,American
+17,"chicken, soy sauce, garlic, ginger",Main Course,Chinese
+18,"spinach, feta cheese, olive oil, vinegar",Salad,Greek
+19,"apples, cinnamon, sugar, pastry crust",Dessert,American
+20,"shrimp, garlic, chili, olive oil",Appetizer,Thai
+21,"tortilla, chicken, salsa, lettuce",Snack,Mexican
+22,"pumpkin, sugar, cinnamon, pastry crust",Dessert,French
+23,"lentils, carrots, onion, vegetable broth",Soup,Indian
+24,"lamb, rosemary, garlic, olive oil",Main Course,French
+25,"mango, yogurt, honey, ice cubes",Beverage,Mediterranean
+26,"pork ribs, BBQ sauce, paprika, garlic",BBQ,American
+27,"bell peppers, onions, soy sauce, ginger",Side Dish,Chinese
+28,"chickpeas, tahini, garlic, lemon",Appetizer,Mediterranean
+29,"spinach, cheese, eggs, pastry crust",Breakfast,French
+30,"pasta, mushrooms, garlic, cream",Main Course,Italian
+31,"chicken, potatoes, onion, broth",Soup,American
+32,"zucchini, tomatoes, oregano, olive oil",Side Dish,Italian
+33,"strawberries, cream, sugar, pastry crust",Dessert,French
+34,"salmon, lemon, garlic, dill",Main Course,Mediterranean
+35,"tuna, lettuce, mayonnaise, tomato",Salad,American
+36,"eggplants, tomatoes, basil, olive oil",Side Dish,Mediterranean
+37,"bananas, oats, peanut butter, honey",Snack,American
+38,"mushrooms, garlic, cream, parsley",Side Dish,French
+39,"potatoes, cheese, onions, cream",Side Dish,American
+40,"tomatoes, basil, oregano, olive oil",Appetizer,Italian
+41,"chicken, paprika, lemon, yogurt",Main Course,Indian
+42,"berries, sugar, cream, pastry crust",Dessert,French
+43,"broccoli, carrots, sesame oil, soy sauce",Side Dish,Chinese
+44,"beef, potatoes, carrots, onion",Soup,American
+45,"lettuce, croutons, parmesan, Caesar dressing",Salad,Greek
+46,"chicken, garlic, soy sauce, ginger",Main Course,Chinese
+47,"flour, eggs, sugar, cinnamon",Dessert,American
+48,"cabbage, carrots, sesame oil, ginger",Side Dish,Chinese
+49,"peas, carrots, onion, chicken",Soup,Indian
+50,"rice, chicken, spices, raisins",Main Course,Indian
+51,"bread, cheese, butter, tomato",Snack,French
+52,"fish, lemon, garlic, parsley",Main Course,Mediterranean
+53,"pasta, tomatoes, olive oil, basil",Main Course,Italian
+54,"chocolate, flour, sugar, butter",Dessert,American
+55,"bananas, milk, sugar, cocoa powder",Beverage,Mexican
+56,"lettuce, cucumber, tomato, olive oil",Salad,Mediterranean
+57,"mushrooms, spinach, cheese, cream",Side Dish,French
+58,"potatoes, sour cream, butter, parsley",Side Dish,American
+59,"ground beef, cheese, tortilla, salsa",Snack,Mexican
+60,"onions, garlic, bell peppers, soy sauce",Side Dish,Chinese
+61,"apples, cinnamon, sugar, pastry crust",Dessert,French
+62,"chicken, ginger, garlic, curry powder",Main Course,Indian
+63,"bread, eggs, milk, sugar",Breakfast,French
+64,"blueberries, sugar, pastry crust, cream",Dessert,American
+65,"salmon, garlic, lemon, parsley",Main Course,Mediterranean
+66,"zucchini, tomatoes, garlic, olive oil",Side Dish,Italian
+67,"cabbage, carrots, sesame oil, soy sauce",Side Dish,Chinese
+68,"lentils, spinach, garlic, curry powder",Main Course,Indian
+69,"flour, sugar, butter, milk",Dessert,French
+70,"beef, mushrooms, onions, garlic",Main Course,French
+71,"shrimp, chili, garlic, olive oil",Appetizer,Thai
+72,"bananas, honey, yogurt, ice cubes",Beverage,Mediterranean
+73,"potatoes, cheese, onions, cream",Side Dish,American
+74,"rice, chicken, carrots, soy sauce",Main Course,Chinese
+75,"apples, sugar, cinnamon, pastry crust",Dessert,French
+76,"chicken, garlic, ginger, yogurt",Main Course,Indian
+77,"bread, avocado, olive oil, pepper",Breakfast,Mexican
+78,"tomatoes, basil, mozzarella, olive oil",Appetizer,Italian
+79,"spinach, cheese, eggs, cream",Side Dish,French
+80,"beef, onions, garlic, soy sauce",Main Course,Chinese
+81,"flour, sugar, eggs, cinnamon",Dessert,American
+82,"fish, lemon, garlic, parsley",Main Course,Mediterranean
+83,"lentils, carrots, onion, curry powder",Main Course,Indian
+84,"berries, sugar, cream, pastry crust",Dessert,French
+85,"ground beef, cheese, tortilla, salsa",Snack,Mexican
+86,"bell peppers, onions, garlic, olive oil",Side Dish,Italian
+87,"bananas, oats, peanut butter, honey",Snack,American
+88,"lettuce, cucumber, tomatoes, olive oil",Salad,Mediterranean
+89,"mushrooms, spinach, cream, garlic",Side Dish,French
+90,"onions, garlic, bell peppers, soy sauce",Side Dish,Chinese
+91,"flour, eggs, sugar, butter",Dessert,French
+92,"zucchini, tomatoes, garlic, basil",Side Dish,Italian
+93,"fish, lemon, parsley, garlic",Main Course,Mediterranean
+94,"bread, eggs, milk, butter",Breakfast,American
+95,"chicken, soy sauce, ginger, garlic",Main Course,Chinese
+96,"rice, curry powder, lentils, spinach",Main Course,Indian
+97,"apples, sugar, cinnamon, pastry crust",Dessert,French
+98,"tomatoes, basil, mozzarella, olive oil",Appetizer,Italian
+99,"bell peppers, onions, garlic, olive oil",Side Dish,Mediterranean
+100,"flour, sugar, eggs, cinnamon",Dessert,American
