@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction for Women</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #ffe4e6;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 160px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            max-width: 500px;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        .popup.diabetic {
+            background-color: #ff4d4d;
+            color: white;
+            border: 5px solid #ff0000;
+        }
+        .popup.non-diabetic {
+            background-color: #4caf50;
+            color: white;
+            border: 5px solid #008000;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <nav class="bg-pink-500 p-4 text-white text-center text-lg font-bold">Diabetes Prediction for Women</nav>
+    
+    <main class="flex flex-col items-center justify-center flex-grow p-5">
+        <div class="bg-white shadow-lg rounded-lg p-8 max-w-lg w-full text-center">
+            <h2 class="text-3xl font-bold text-pink-600">Diabetes Prediction for Women</h2>
+            <p class="text-gray-600">Enter the following details to check your diabetes risk.</p>
+            
+            <form id="predictForm" class="mt-4">
+                <div class="grid grid-cols-1 gap-4">
+                    <label class="text-gray-700">Pregnancies (0-17) <span class="tooltip">❓<span class="tooltiptext">Number of times you have been pregnant.</span></span></label>
+                    <input type="number" id="f1" min="0" max="17" placeholder="E.g., 2" class="border p-2 rounded w-full" required>
+                    
+                    <label class="text-gray-700">Glucose Level (0-200 mg/dL) <span class="tooltip">❓<span class="tooltiptext">Blood sugar level after fasting.</span></span></label>
+                    <input type="number" id="f2" min="0" max="200" placeholder="E.g., 120" class="border p-2 rounded w-full" required>
+                    
+                    <label class="text-gray-700">Blood Pressure (0-122 mm Hg) <span class="tooltip">❓<span class="tooltiptext">Your diastolic blood pressure.</span></span></label>
+                    <input type="number" id="f3" min="0" max="122" placeholder="E.g., 80" class="border p-2 rounded w-full" required>
+                    
+                    <label class="text-gray-700">Skin Thickness (0-99 mm) <span class="tooltip">❓<span class="tooltiptext">Thickness of skin fold at triceps.</span></span></label>
+                    <input type="number" id="f4" min="0" max="99" placeholder="E.g., 23" class="border p-2 rounded w-full" required>
+                    
+                    <label class="text-gray-700">Insulin Level (0-846 mu U/ml) <span class="tooltip">❓<span class="tooltiptext">Insulin concentration in blood.</span></span></label>
+                    <input type="number" id="f5" min="0" max="846" placeholder="E.g., 79" class="border p-2 rounded w-full" required>
+                    
+                    <label class="text-gray-700">BMI (0-67 kg/m²) <span class="tooltip">❓<span class="tooltiptext">Body Mass Index: weight(kg)/height(m²).</span></span></label>
+                    <input type="number" id="f6" min="0" max="67" step="0.1" placeholder="E.g., 25.6" class="border p-2 rounded w-full" required>
+                    
+                    <label class="text-gray-700">Diabetes Pedigree Function (0.078-2.42) <span class="tooltip">❓<span class="tooltiptext">Genetic likelihood of diabetes.</span></span></label>
+                    <input type="number" id="f7" min="0.078" max="2.42" step="0.001" placeholder="E.g., 0.627" class="border p-2 rounded w-full" required>
+                    
+                    <label class="text-gray-700">Age (21-81 years) <span class="tooltip">❓<span class="tooltiptext">Your age in years.</span></span></label>
+                    <input type="number" id="f8" min="21" max="81" placeholder="E.g., 35" class="border p-2 rounded w-full" required>
+                </div>
+                
+                <button type="button" onclick="predictDiabetes()" class="mt-4 bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-700">Predict</button>
+            </form>
+        </div>
+    </main>
+    
+    <footer class="bg-pink-500 p-4 text-white text-center mt-4">&copy; 2025 Diabetes Prediction System</footer>
+
+    <div id="popup" class="popup"></div>
+
+    <script>
+        async function predictDiabetes() {
+            const features = [...document.querySelectorAll("input")].map(input => parseFloat(input.value));
+            const response = await fetch("https://diabetes-prediction-b6co.onrender.com/predict", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ "features": features })
+            });
+            const data = await response.json();
+            const popup = document.getElementById("popup");
+            popup.textContent = `Prediction: ${data.prediction}`;
+            popup.className = data.prediction === "Diabetic" ? "popup diabetic" : "popup non-diabetic";
+            popup.style.display = "block";
+            setTimeout(() => popup.style.display = "none", 5000);
+        }
+    </script>
+</body>
+</html>
