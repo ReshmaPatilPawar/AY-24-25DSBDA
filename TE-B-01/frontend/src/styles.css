@@ -1,0 +1,47 @@
+.container {
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  form {
+    margin: 20px;
+  }
+  
+  input {
+    margin: 5px;
+    padding: 10px;
+    width: 200px;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .alert-box {
+    background-color: #ffcccb;
+    padding: 10px;
+    margin: 20px 0;
+  }
+  
+  .forecast-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .forecast-table th, .forecast-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  .charts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
