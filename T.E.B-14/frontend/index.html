@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Uber Fare Predictor</title>
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+<body>
+  <h2>Uber Fare Prediction</h2>
+  <form id="fareForm">
+    <label>Pickup Longitude: <input type="number" step="any" name="pickup_longitude" required></label><br/>
+    <label>Pickup Latitude: <input type="number" step="any" name="pickup_latitude" required></label><br/>
+    <label>Dropoff Longitude: <input type="number" step="any" name="dropoff_longitude" required></label><br/>
+    <label>Dropoff Latitude: <input type="number" step="any" name="dropoff_latitude" required></label><br/>
+    <label>Passenger Count: <input type="number" name="passenger_count" required></label><br/>
+    <button type="submit">Predict Fare</button>
+  </form>
+
+  <h3 id="result"></h3>
+
+  <script src="script.js"></script>
+</body>
+</html>
