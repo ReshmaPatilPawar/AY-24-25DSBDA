@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPA Prediction Model</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+        header {
+            background-color: #2C3E50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 18px;
+            margin-bottom: 0;
+        }
+        main {
+            padding: 40px;
+            background-color: #fff;
+            max-width: 800px;
+            margin: 30px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #2980B9;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .section label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .section input,
+        .section select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .section input[type="submit"] {
+            background-color: #2980B9;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .section input[type="submit"]:hover {
+            background-color: #3498DB;
+        }
+        .result {
+            background-color: #F1C40F;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        @media (max-width: 768px) {
+            main {
+                padding: 20px;
+            }
+            header h1 {
+                font-size: 28px;
+            }
+            header p {
+                font-size: 16px;
+            }
+            .section input {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>GPA Prediction Model</h1>
+        <p>Predict your GPA based on study time, absences, and extracurricular activities.</p>
+    </header>
+
+    <main>
+        <h2>Enter Your Details</h2>
+
+        <form id="prediction-form">
+            <div class="section">
+                <label for="study_time">Study Time (Hours per Week):</label>
+                <input type="number" id="study_time" name="study_time" required min="0">
+            </div>
+            
+            <div class="section">
+                <label for="absences">Absences Percentage:</label>
+                <input type="number" id="absences" name="absences" required min="0" max="100">
+            </div>
+            
+            <div class="section">
+                <label for="tutoring">Tutoring:</label>
+                <select id="tutoring" name="tutoring" required>
+                    <option value="">Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            
+            <div class="section">
+                <label for="extracurricular">Extracurricular:</label>
+                <select id="extracurricular" name="extracurricular" required>
+                    <option value="">Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            
+            <div class="section">
+                <label for="volunteering">Volunteering:</label>
+                <select id="volunteering" name="volunteering" required>
+                    <option value="">Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div class="section">
+                <input type="submit" value="Predict GPA">
+            </div>
+        </form>
+
+        <div id="prediction-result" class="result" style="display:none;">
+            <h3>Your Predicted GPA: <span id="predicted-gpa"></span></h3>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('prediction-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+    
+            const formData = new FormData(this);
+            const data = {
+                StudyTimeWeekly: parseFloat(formData.get('study_time')),
+                AbsencesPercentage: parseFloat(formData.get('absences')),
+                Tutoring: formData.get('tutoring'),
+                Extracurricular: formData.get('extracurricular'),
+                Volunteering: formData.get('volunteering')
+            };
+    
+            try {
+                const response = await fetch('https://student-performance-predictor-3.onrender.com/predict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+    
+                const result = await response.json();
+                console.log(result); // check in dev tools
+    
+                document.getElementById('prediction-result').style.display = 'block';
+                document.getElementById('predicted-gpa').textContent = result.predicted_gpa;
+    
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error while making prediction!');
+            }
+        });
+    </script>
+    
+
+</body>
+</html>
