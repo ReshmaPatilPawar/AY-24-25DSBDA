@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student GPA Predictor</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f7fa;
+      color: #333;
+    }
+
+    .container {
+      position: relative;
+       z-index: 1;
+       overflow: hidden;
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #4b2aad;
+    }
+
+
+    form label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 500;
+    }
+
+    form input, form select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    form input[type="submit"] {
+      background-color: #4b2aad;
+      color: white;
+      border: none;
+      margin-top: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    form input[type="submit"]:hover {
+      background-color: #3c2191;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+        margin: 20px;
+      }
+
+
+
+    }
+
+
+ 
+
+ 
+
+  
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+     
+
+    <h2>🎓 Student GPA Predictor</h2>
+    <form action="/predict" method="post">
+      <label>Age</label>
+      <input type="number" name="Age" required>
+
+      <label>Gender</label>
+      <select name="Gender">
+        <option>Male</option><option>Female</option>
+      </select>
+
+      <label>Ethnicity</label>
+      <input type="text" name="Ethnicity" required>
+
+      <label>Parental Education</label>
+      <input type="text" name="ParentalEducation" required>
+
+      <label>Study Time Weekly (hrs)</label>
+      <input type="number" name="StudyTimeWeekly" required>
+
+      <label>Absences</label>
+      <input type="number" name="Absences" required>
+
+      <label>Tutoring</label>
+      <select name="Tutoring"><option>Yes</option><option>No</option></select>
+
+      <label>Parental Support</label>
+      <select name="ParentalSupport"><option>Yes</option><option>No</option></select>
+
+      <label>Extracurricular</label>
+      <select name="Extracurricular"><option>Yes</option><option>No</option></select>
+
+      <label>Sports</label>
+      <select name="Sports"><option>Yes</option><option>No</option></select>
+
+      <label>Music</label>
+      <select name="Music"><option>Yes</option><option>No</option></select>
+
+      <label>Volunteering</label>
+      <select name="Volunteering"><option>Yes</option><option>No</option></select>
+
+      <input type="submit" value="Predict GPA">
+    </form>
+  
+  </div>
+</body>
+</html>
