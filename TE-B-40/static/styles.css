@@ -1,0 +1,26 @@
+input.form-control,
+select.form-select {
+  border-radius: 0.5rem;
+  padding: 0.6rem;
+  box-shadow: none;
+  transition: all 0.3s ease-in-out;
+}
+
+input.form-control:focus,
+select.form-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+}
+
+.btn-primary {
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 0.5rem 2rem;
+  border-radius: 30px;
+}
+
+#result {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #212529;
+}
