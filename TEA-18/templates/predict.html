@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thyroid Prediction Tool - ThyroPredict</title>
+    <meta name="description" content="Use our thyroid prediction tool to assess your thyroid health based on lab values and health indicators.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                        <path d="M12 5 8.5 9.5"></path>
+                        <path d="M12 5v14"></path>
+                        <path d="M12 5 15.5 9.5"></path>
+                    </svg>
+                    ThyroPredict
+                </a>
+                <button class="mobile-nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <ul id="nav-menu" class="nav-menu">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/predict" class="nav-link active">Predict</a></li>
+                    <li><a href="/about" class="nav-link">About Thyroid</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="prediction-form-section" style="padding-top: 120px; padding-bottom: var(--space-xxl);">
+        <div class="container">
+            <div class="row">
+                <div class="col" style="max-width: 800px; margin: 0 auto;">
+                    <div class="card">
+                        <h1 class="card-title" style="text-align: center; font-size: var(--font-xxl);">Thyroid Prediction Tool</h1>
+                        <p style="text-align: center; margin-bottom: var(--space-xl);">Enter your thyroid test results and personal information to get a prediction about your thyroid health.</p>
+                        
+                        <form id="prediction-form" action="/predict" method="post">
+                            <div class="form-help" style="background-color: #f8f9fa; padding: var(--space-md); border-radius: var(--border-radius-md); margin-bottom: var(--space-lg);">
+                                <h4 style="margin-top: 0;">About the Form Fields</h4>
+                                <p>The prediction tool uses these key values to assess thyroid function:</p>
+                                <ul style="margin-bottom: 0;">
+                                    <li><strong>TSH (Thyroid Stimulating Hormone):</strong> Normal range is typically 0.4-4.0 mIU/L</li>
+                                    <li><strong>T3 (Triiodothyronine):</strong> Normal range is typically 80-200 ng/dL</li>
+                                    <li><strong>T4 (Thyroxine):</strong> Normal range is typically 5-12 μg/dL</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="form-row" style="display: flex; flex-wrap: wrap; margin: 0 -var(--space-md);">
+                                <div class="form-group" style="flex: 1; min-width: 250px; padding: 0 var(--space-md);">
+                                    <label for="age">Age</label>
+                                    <input type="number" id="age" name="age" class="form-control" min="18" max="100" required>
+                                </div>
+                                <div class="form-group" style="flex: 1; min-width: 250px; padding: 0 var(--space-md);">
+                                    <label for="gender">Gender</label>
+                                    <select id="gender" name="gender" class="form-control" required>
+                                        <option value="" disabled selected>Select gender</option>
+                                        <option value="female">Female</option>
+                                        <option value="male">Male</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row" style="display: flex; flex-wrap: wrap; margin: 0 -var(--space-md);">
+                                <div class="form-group" style="flex: 1; min-width: 250px; padding: 0 var(--space-md);">
+                                    <label for="tsh">TSH (mIU/L) <span data-tooltip="Thyroid Stimulating Hormone" style="cursor: help; color: var(--primary);">?</span></label>
+                                    <input type="number" id="tsh" name="tsh" class="form-control" step="0.01" min="0" max="20" required>
+                                </div>
+                                <div class="form-group" style="flex: 1; min-width: 250px; padding: 0 var(--space-md);">
+                                    <label for="t3">T3 (ng/dL) <span data-tooltip="Triiodothyronine" style="cursor: help; color: var(--primary);">?</span></label>
+                                    <input type="number" id="t3" name="t3" class="form-control" step="0.1" min="0" max="400" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row" style="display: flex; flex-wrap: wrap; margin: 0 -var(--space-md);">
+                                <div class="form-group" style="flex: 1; min-width: 250px; padding: 0 var(--space-md);">
+                                    <label for="t4">T4 (μg/dL) <span data-tooltip="Thyroxine" style="cursor: help; color: var(--primary);">?</span></label>
+                                    <input type="number" id="t4" name="t4" class="form-control" step="0.1" min="0" max="25" required>
+                                </div>
+                                <div style="flex: 1; min-width: 250px; padding: 0 var(--space-md);"></div>
+                            </div>
+                            
+                            <div class="form-disclaimer" style="margin: var(--space-lg) 0; font-size: var(--font-sm); color: var(--text-medium);">
+                                <p><strong>Important Disclaimer:</strong> This tool provides predictions based on machine learning models and is for educational purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult with a healthcare provider for medical concerns.</p>
+                            </div>
+                            
+                            <div style="text-align: center;">
+                                <button type="submit" class="btn btn-primary btn-lg">Get Prediction</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="reference-values" style="margin-bottom: var(--space-xxl);">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: var(--space-xl);">Reference Values</h2>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <h3 class="card-title">TSH (Thyroid Stimulating Hormone)</h3>
+                        <div class="reference-table" style="overflow-x: auto;">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr>
+                                        <th style="padding: var(--space-sm); text-align: left; border-bottom: 1px solid #e0e0e0;">Range (mIU/L)</th>
+                                        <th style="padding: var(--space-sm); text-align: left; border-bottom: 1px solid #e0e0e0;">Interpretation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="padding: var(--space-sm); border-bottom: 1px solid #e0e0e0;">&lt; 0.4</td>
+                                        <td style="padding: var(--space-sm); border-bottom: 1px solid #e0e0e0;">Below normal (Possible hyperthyroidism)</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: var(--space-sm); border-bottom: 1px solid #e0e0e0;">0.4 - 4.0</td>
+                                        <td style="padding: var(--space-sm); border-bottom: 1px solid #e0e0e0;">Normal range</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: var(--space-sm); border-bottom: 1px solid #e0e0e0;">4.0 - 10.0</td>
+                                        <td style="padding: var(--space-sm); border-bottom: 1px solid #e0e0e0;">Above normal (Possible hypothyroidism)</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: var(--space-sm);">&gt; 10.0</td>
+                                        <td style="padding: var(--space-sm);">Significantly elevated (Likely hypothyroidism)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <h3 class="card-title">T3 and T4 Hormones</h3>
+                        <div class="reference-table" style="overflow-x: auto;">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr>
+                                        <th style="padding: var(--space-sm); text-align: left; border-bottom: 1px solid #e0e0e0;">Hormone</th>
+                                        <th style="padding: var(--space-sm); text-align: left; border-bottom: 1px solid #e0e0e0;">Normal Range</th>
+                                        <th style="padding: var(--space-sm); text-align: left; border-bottom: 1px solid #e0e0e0;">Low (Hypothyroidism)</th>
+                                        <th style="padding: var(--space-sm); text-align: left; border-bottom: 1px solid #e0e0e0;">High (Hyperthyroidism)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="padding: var(--space-sm); border-bottom: 1px solid #e0e0e0;">T3 (ng/dL)</td>
+                                        <td style="padding: var(--space-sm); border-bottom: 1px solid #e0e0e0;">80 - 200</td>
+                                        <td style="padding: var(--space-sm); border-bottom: 1px solid #e0e0e0;">&lt; 80</td>
+                                        <td style="padding: var(--space-sm); border-bottom: 1px solid #e0e0e0;">&gt; 200</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: var(--space-sm);">T4 (μg/dL)</td>
+                                        <td style="padding: var(--space-sm);">5 - 12</td>
+                                        <td style="padding: var(--space-sm);">&lt; 5</td>
+                                        <td style="padding: var(--space-sm);">&gt; 12</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="/" class="footer-logo">ThyroPredict</a>
+                    <p>Advanced thyroid prediction using machine learning. Early detection for better health outcomes.</p>
+                </div>
+                <div class="footer-links-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/predict">Prediction Tool</a></li>
+                        <li><a href="/about">About Thyroid</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Thyroid Health Guide</a></li>
+                        <li><a href="#">Understanding Lab Results</a></li>
+                        <li><a href="#">Treatment Options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ThyroPredict. All rights reserved. This tool is for educational purposes only and is not a substitute for professional medical advice.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

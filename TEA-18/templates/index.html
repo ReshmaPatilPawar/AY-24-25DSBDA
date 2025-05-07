@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thyroid Prediction - Early Detection for Better Health</title>
+    <meta name="description" content="Predict thyroid conditions using advanced machine learning. Early detection for better health outcomes.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                        <path d="M12 5 8.5 9.5"></path>
+                        <path d="M12 5v14"></path>
+                        <path d="M12 5 15.5 9.5"></path>
+                    </svg>
+                    ThyroPredict
+                </a>
+                <button class="mobile-nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <ul id="nav-menu" class="nav-menu">
+                    <li><a href="/" class="nav-link active">Home</a></li>
+                    <li><a href="/predict" class="nav-link">Predict</a></li>
+                    <li><a href="/about" class="nav-link">About Thyroid</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Early Thyroid Prediction for Better Health</h1>
+                <p>Our advanced AI model helps predict thyroid conditions based on your health data, enabling early detection and better treatment outcomes.</p>
+                <a href="/predict" class="btn btn-secondary btn-lg animate-slide-up">Try Prediction Tool</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center; margin: var(--space-xxl) 0 var(--space-xl);">Why Use ThyroPredict?</h2>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 6v6l4 2"></path>
+                        </svg>
+                        <h3 class="card-title">Early Detection</h3>
+                        <p>Identifying thyroid conditions early can significantly improve treatment outcomes and prevent complications.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
+                        <h3 class="card-title">Educational Information</h3>
+                        <p>Learn about thyroid disorders, symptoms, and treatment options with our comprehensive resources.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline>
+                            <path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path>
+                        </svg>
+                        <h3 class="card-title">Data Security</h3>
+                        <p>Your health data is secure and private. We never store personal information without your consent.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center; margin: var(--space-xxl) 0 var(--space-xl);">How It Works</h2>
+            <div class="row">
+                <div class="col">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Enter Your Health Data</h3>
+                        <p>Provide basic information about your thyroid health indicators, including TSH, T3, and T4 levels.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>AI Analysis</h3>
+                        <p>Our advanced machine learning model analyzes your data to identify patterns associated with thyroid conditions.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Get Results</h3>
+                        <p>Receive a detailed report with predictions about your thyroid health and recommended next steps.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <div class="cta-box" style="background-color: var(--primary); color: white; padding: var(--space-xl); border-radius: var(--border-radius-lg); text-align: center; margin: var(--space-xxl) 0;">
+                <h2>Ready to Check Your Thyroid Health?</h2>
+                <p>Start with our prediction tool for an initial assessment. Remember, this tool is not a replacement for professional medical advice.</p>
+                <a href="/predict" class="btn btn-secondary btn-lg" style="margin-top: var(--space-lg);">Start Prediction</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="/" class="footer-logo">ThyroPredict</a>
+                    <p>Advanced thyroid prediction using machine learning. Early detection for better health outcomes.</p>
+                </div>
+                <div class="footer-links-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/predict">Prediction Tool</a></li>
+                        <li><a href="/about">About Thyroid</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Thyroid Health Guide</a></li>
+                        <li><a href="#">Understanding Lab Results</a></li>
+                        <li><a href="#">Treatment Options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ThyroPredict. All rights reserved. This tool is for educational purposes only and is not a substitute for professional medical advice.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
