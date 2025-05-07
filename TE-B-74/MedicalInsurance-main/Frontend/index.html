@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Eligibility Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Loan Eligibility Prediction</h1>
+        <form action="/predict" method="POST">
+            <label for="applicant_income">Applicant Income</label>
+            <input type="number" id="applicant_income" name="applicant_income" required>
+
+            <label for="coapplicant_income">Co-applicant Income</label>
+            <input type="number" id="coapplicant_income" name="coapplicant_income" required>
+
+            <label for="loan_amount">Loan Amount</label>
+            <input type="number" id="loan_amount" name="loan_amount" required>
+
+            <label for="loan_term">Loan Term (in months)</label>
+            <input type="number" id="loan_term" name="loan_term" required>
+
+            <label for="credit_history">Credit History (0 or 1)</label>
+            <input type="number" id="credit_history" name="credit_history" required>
+
+            <label for="property_area">Property Area</label>
+            <select id="property_area" name="property_area" required>
+                <option value="Urban">Urban</option>
+                <option value="Semiurban">Semiurban</option>
+                <option value="Rural">Rural</option>
+            </select>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result">
+                <h3>{{ prediction }}</h3>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
