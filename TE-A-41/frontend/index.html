@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IMDb Rating Predictor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🎬 IMDb Rating Predictor</h1>
+    <form id="predictForm">
+      <input type="text" placeholder="🎭 Genre (e.g. Action|Sci-Fi)" name="genre" required>
+      <input type="text" placeholder="🎬 Director" name="director" required>
+      <input type="number" placeholder="💰 Budget (USD)" name="budget" required>
+      <input type="number" placeholder="📅 Year" name="year" required>
+      <input type="number" placeholder="⏱️ Runtime (min)" name="runtime" required>
+      <button type="submit">🎯 Predict Rating</button>
+    </form>
+    <div id="result" class="result-box"></div>
+  </div>
+
+  <footer>
+    <!-- <p>Made for DSBDA Mini Project 🎓</p> -->
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
