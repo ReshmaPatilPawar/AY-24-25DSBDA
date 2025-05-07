@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 400px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-size: 14px;
+            color: #555;
+        }
+        input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .prediction {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+            text-align: center;
+        }
+        .tooltip {
+            font-size: 12px;
+            color: #888;
+            display: inline-block;
+            cursor: help;
+            margin-left: 5px;
+        }
+        .tooltip:hover {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Car Price Predictor</h2>
+        <form id="predictForm" action="/predict" method="post" onsubmit="return validateInputs()">
+            <!-- Symboling -->
+            <div class="form-group">
+                <label for="feature1">Symboling (Car Risk Level)</label>
+                <input type="number" name="feature1" id="feature1" min="-3" max="3" placeholder="Range: -3 to 3" required>
+                <span class="tooltip" title="Insurance risk rating: -3 (safe) to 3 (risky)">?</span>
+            </div>
+
+            <!-- Normalized Losses -->
+            <!-- Normalized Losses -->
+<div class="form-group">
+    <label for="feature2">
+        Normalized Losses (Damage Risk Estimate)
+    </label>
+    <input type="number" name="feature2" id="feature2" min="65" max="250"
+           placeholder="65 (low risk) to 250 (high risk)" required>
+    <span class="tooltip" title="An insurance-based estimate of average damage repair cost. 65 = low risk, 100 = average, 250 = high risk.">?</span>
+</div>
+
+
+            <!-- Make -->
+            <div class="form-group">
+                <label for="feature3">Car Make (Brand)</label>
+                <select name="feature3" id="feature3" required>
+                    <option value="">Select Car Make</option>
+                    <option value="0">Alfa-Romeo</option>
+                    <option value="1">Audi</option>
+                    <option value="2">BMW</option>
+                    <option value="3">Chevrolet</option>
+                    <option value="4">Dodge</option>
+                    <option value="5">Honda</option>
+                    <option value="6">Isuzu</option>
+                    <option value="7">Jaguar</option>
+                    <option value="8">Mazda</option>
+                    <option value="9">Mercedes-Benz</option>
+                    <option value="10">Mitsubishi</option>
+                    <option value="11">Nissan</option>
+                    <option value="12">Peugeot</option>
+                    <option value="13">Plymouth</option>
+                    <option value="14">Porsche</option>
+                    <option value="15">Renault</option>
+                    <option value="16">Saab</option>
+                    <option value="17">Subaru</option>
+                    <option value="18">Toyota</option>
+                    <option value="19">Volkswagen</option>
+                    <option value="20">Volvo</option>
+                </select>
+                <span class="tooltip" title="Select the car's brand name">?</span>
+            </div>
+
+            <!-- Fuel Type -->
+            <div class="form-group">
+                <label for="feature4">Fuel Type</label>
+                <select name="feature4" id="feature4" required>
+                    <option value="">Select Fuel Type</option>
+                    <option value="0">Gas</option>
+                    <option value="1">Diesel</option>
+                </select>
+                <span class="tooltip" title="0 = Gas, 1 = Diesel">?</span>
+            </div>
+
+            <!-- Horsepower -->
+            <div class="form-group">
+                <label for="feature5">Horsepower</label>
+                <input type="number" name="feature5" id="feature5" min="48" max="700" placeholder="Range: 48 to 700" required>
+                <span class="tooltip" title="Enter engine power in HP">?</span>
+            </div>
+
+            <input type="submit" value="Predict">
+        </form>
+
+        <div class="prediction">
+            <h3>{{ prediction_text }}</h3>
+        </div>
+    </div>
+
+    <script>
+        function validateInputs() {
+            const symboling = parseInt(document.getElementById("feature1").value);
+            const losses = parseInt(document.getElementById("feature2").value);
+            const horsepower = parseInt(document.getElementById("feature5").value);
+
+            if (symboling < -3 || symboling > 3) {
+                alert("Symboling must be between -3 and 3.");
+                return false;
+            }
+            if (losses < 65 || losses > 250) {
+                alert("Normalized losses must be between 65 and 250.");
+                return false;
+            }
+            if (horsepower < 48 || horsepower > 700) {
+                alert("Horsepower must be between 48 and 288.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+</body>
+</html>
