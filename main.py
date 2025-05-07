@@ -1,94 +1,79 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import pickle
 import pandas as pd
-import joblib
-import random
+import traceback
 
 app = Flask(__name__)
 CORS(app)
 
-# Load ML model and label encoder
-model = joblib.load("mood_predictor_model.pkl")
-le = joblib.load("label_encoder.pkl")
+# Load model and encoders
+with open("placement_model.pkl", "rb") as f:
+    model = pickle.load(f)
 
-# Load song dataset
-df = pd.read_csv("enhanced_song_dataset.csv")
+with open("label_encoders.pkl", "rb") as f:
+    encoders = pickle.load(f)
 
-# Preprocess mood column
-df['mood'] = df['mood'].astype(str).str.strip().str.lower().str.capitalize()
-
-# Define feature columns (must match training order)
-features = ['valence', 'danceability', 'energy', 'tempo', 'acousticness', 'liveness']
-
-# Get unique moods
-available_moods = sorted(df['mood'].dropna().unique().tolist())
-
-@app.route("/api/moods", methods=["GET"])
-def get_available_moods():
-    """Return list of all available moods in the dataset."""
-    return jsonify({"available_moods": available_moods})
-
-@app.route("/api/recommend/mood", methods=["POST"])
-def recommend_songs_by_mood():
-    """Recommend songs based on selected mood."""
-    data = request.get_json()
-    mood_input = data.get("mood", "").strip().capitalize()
-
-    if mood_input not in available_moods:
-        return jsonify({"error": f"Mood '{mood_input}' not found."}), 404
-
-    filtered_songs = df[df['mood'] == mood_input]
-
-    if filtered_songs.empty:
-        return jsonify({"error": f"No songs found for mood '{mood_input}'."}), 404
-
-    count = min(random.randint(5, 8), len(filtered_songs))
-    sampled_songs = filtered_songs.sample(count, random_state=42)
-
-    return jsonify({
-        "mood": mood_input,
-        "songs": sampled_songs['song_name'].tolist()
-    })
-
-@app.route("/api/recommend/song", methods=["POST"])
-def recommend_songs_by_song():
-    """Recommend songs based on mood predicted from input song."""
-    data = request.get_json()
-    song_input = data.get("song", "").strip()
-
-    if not song_input:
-        return jsonify({"error": "Song name is required."}), 400
-
-    song_row = df[df['song_name'].str.lower() == song_input.lower()]
-    if song_row.empty:
-        return jsonify({"error": f"Song '{song_input}' not found."}), 404
-
+@app.route("/predict", methods=["POST"])
+def predict():
     try:
-        # Build a single-row DataFrame with the correct feature names and order
-        input_features = song_row[features].iloc[0].to_dict()
-        input_df = pd.DataFrame([input_features], columns=features)
+        data = request.json
 
-        predicted_mood_encoded = model.predict(input_df)[0]
-        predicted_mood = le.inverse_transform([predicted_mood_encoded])[0].strip().capitalize()
+        # Convert all fields to correct numeric types
+        processed_data = {
+            'CGPA': float(data.get('CGPA', 0)),
+            'Internships': int(data.get('Internships', 0)),
+            'Projects': int(data.get('Projects', 0)),
+            'Workshops/Certifications': int(data.get('Workshops/Certifications', 0)),
+            'AptitudeTestScore': float(data.get('AptitudeTestScore', 0)),
+            'SoftSkillsRating': float(data.get('SoftSkillsRating', 0)),
+            'ExtracurricularActivities': int(data.get('ExtracurricularActivities', 0)),
+            'PlacementTraining': int(data.get('PlacementTraining', 0)),
+            'SSC_Marks': float(data.get('SSC_Marks', 0)),
+            'HSC_Marks': float(data.get('HSC_Marks', 0))
+        }
+
+        input_df = pd.DataFrame([processed_data])
+
+        prediction = model.predict(input_df)[0]
+        proba = model.predict_proba(input_df)[0][1]
+
+        # Rescale probability
+        min_proba = 0.78
+        max_proba = 0.85
+        scaled_proba = min_proba + (max_proba - min_proba) * proba
+        scaled_proba_percent = round(scaled_proba * 100, 2)
+
+        label_decoder = encoders["PlacementStatus"]
+        prediction_label = label_decoder.inverse_transform([prediction])[0]
+
+        strengths = []
+        if processed_data["AptitudeTestScore"] > 70:
+            strengths.append("Strong aptitude")
+        if processed_data["SoftSkillsRating"] > 3.5:
+            strengths.append("Excellent soft skills")
+        if processed_data["PlacementTraining"] == 1:
+            strengths.append("Placement training attended")
+        if not strengths:
+            strengths.append("No major strengths detected")
+
+        if scaled_proba_percent >= 75:
+            verdict = "🎉 High chance of placement! Strong profile."
+        elif scaled_proba_percent >= 55:
+            verdict = "⚖️ Moderate chance. Profile is average — improvements needed."
+        else:
+            verdict = "⚠️ Low chance. Recommend skill-building & certifications."
+
+        return jsonify({
+            "prediction": prediction_label,
+            "probability": scaled_proba_percent,
+            "strengths": strengths,
+            "verdict": verdict
+        })
+
     except Exception as e:
-        return jsonify({"error": f"Prediction failed: {str(e)}"}), 500
-
-    mood_songs = df[(
-        df['mood'] == predicted_mood) & 
-        (df['song_name'].str.lower() != song_input.lower())
-    ]
-
-    if mood_songs.empty:
-        return jsonify({"error": f"No recommendations found for mood '{predicted_mood}'."}), 404
-
-    count = min(random.randint(5, 8), len(mood_songs))
-    recommendations = mood_songs.sample(count, random_state=42)
-
-    return jsonify({
-        "song_input": song_input,
-        "predicted_mood": predicted_mood,
-        "recommendations": recommendations['song_name'].tolist()
-    })
+        traceback.print_exc()  # See full traceback in terminal
+        return jsonify({"error": f"Internal Server Error: {str(e)}"}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
