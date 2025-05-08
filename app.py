@@ -1,88 +1,104 @@
-from flask import Flask, request, jsonify, render_template_string
+import streamlit as st 
+import pandas as pd
 import numpy as np
-import cv2
-import tensorflow as tf
-from tensorflow.keras.models import load_model
+import joblib as jb
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import LabelEncoder
+from sklearn.ensemble import RandomForestClassifier
+import streamlit_option_menu as som 
 
-app = Flask(__name__)
-model = load_model("age_gender_model.h5", compile=False)
+# Sidebar
+with st.sidebar:
+    menu_option = ['Prediction', 'Train Model']
+    selected_option = som.option_menu(
+        'Disease Prediction System Based on Symptoms', 
+        options=menu_option, 
+        icons=['hospital', 'database-fill-add', 'train-front'], 
+        menu_icon='bandaid'
+    )
 
-# HTML template
-HTML_PAGE = '''
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Age & Gender Predictor</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center">
-    <div class="bg-white shadow-xl rounded-2xl p-8 max-w-md w-full animate-fade-in">
-        <h1 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Upload a Face Image</h1>
-        <form method="POST" action="/predict" enctype="multipart/form-data" class="flex flex-col items-center gap-4">
-            <input type="file" name="image" id="imageInput" accept="image/*" required
-                   class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4
-                          file:rounded-full file:border-0 file:text-sm file:font-semibold
-                          file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/>
-            <img id="preview" src="#" alt="Preview" class="mt-4 max-w-xs rounded-lg hidden shadow-lg" />
-            <button type="submit"
-                    class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full transition">
-                Predict
-            </button>
-        </form>
+# Load model and label encoder
+model_RFC = jb.load("C:/Users/RUCHITA/disease prediction dsbda/model_RFC.pkl")
+label_encoder = jb.load("C:/Users/RUCHITA/disease prediction dsbda/label_encoder.pkl")
 
-        {% if prediction %}
-        <div class="mt-6 text-center">
-            <p class="text-gray-700 text-lg"><strong>Age:</strong> {{ prediction.age }}</p>
-            <p class="text-gray-700 text-lg"><strong>Gender:</strong> {{ prediction.gender }}</p>
-        </div>
-        {% endif %}
-    </div>
-
-    <script>
-        const imageInput = document.getElementById('imageInput');
-        const preview = document.getElementById('preview');
-
-        imageInput.addEventListener('change', function () {
-            const file = this.files[0];
-            if (file) {
-                preview.src = URL.createObjectURL(file);
-                preview.classList.remove("hidden");
-            }
-        });
-    </script>
-</body>
-</html>
-'''
-
-
-def preprocess_image(image, target_size=(64, 64)):
-    image = cv2.imdecode(np.frombuffer(image.read(), np.uint8), cv2.IMREAD_COLOR)
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    image = cv2.resize(image, target_size)
-    image = image.astype(np.float32) / 255.0
-    return np.expand_dims(image, axis=0)
-
-@app.route('/', methods=['GET'])
-def home():
-    return render_template_string(HTML_PAGE)
-
-@app.route('/predict', methods=['POST'])
-def predict():
-    if 'image' not in request.files:
-        return jsonify({'error': 'No image uploaded'}), 400
-
-    image_file = request.files['image']
-    image = preprocess_image(image_file)
+# Prediction page
+if selected_option == 'Prediction':
+    st.header('Disease Prediction System based on Symptoms')
     
-    age_pred, gender_pred = model.predict(image)
-    predicted_age = int(age_pred[0][0])
-    predicted_gender = 'Male' if gender_pred[0][0] < 0.5 else 'Female'
+    # Load symptom list from severity file
+    severity = pd.read_csv('C:/Users/RUCHITA/disease prediction dsbda/Diseases-Prediction-based-on-Symptoms/Dataset/Symptom-severity.csv')
+    severity['Symptom'] = severity['Symptom'].str.lower().str.strip().str.replace('_',' ')
+    symptom_list = severity['Symptom'].tolist()
 
-    return render_template_string(HTML_PAGE, prediction={
-        'age': predicted_age,
-        'gender': predicted_gender
-    })
+    # Multiselect dropdown
+    selected_symptoms = st.multiselect(
+        "Select your symptoms",
+        symptom_list,
+        max_selections=17,
+        placeholder="Choose up to 17 symptoms..."
+    )
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5050)
+    def prediction(symptoms):
+        symptoms = [s.lower().strip().replace('_', ' ') if s else '0' for s in symptoms]
+        severity_dict = dict(zip(severity['Symptom'], severity['weight']))
+        encoded = [severity_dict.get(s, 0) for s in symptoms]
+
+        # Pad with zeros if fewer than 17 symptoms
+        while len(encoded) < 17:
+            encoded.append(0)
+        encoded = encoded[:17]  # Limit to 17 symptoms max
+
+        pred = model_RFC.predict([encoded])
+        return label_encoder.inverse_transform(pred)[0]
+
+    if st.button('Make Prediction'):
+        if not selected_symptoms:
+            st.warning("Please select at least one symptom.")
+        else:
+            result = prediction(selected_symptoms)
+            st.success(f'Predicted Disease: {result}')
+
+# Train model   
+elif selected_option == 'Train Model':
+    st.title('Model Training Page')
+    st.header("Train the model")
+    st.write("Click on the button to start training the model")
+
+    def training_model():
+        dataset = pd.read_csv('C:/Users/RUCHITA/disease prediction dsbda/Diseases-Prediction-based-on-Symptoms/Dataset/dataset.csv')
+        for col in dataset.columns:
+            dataset[col] = dataset[col].str.replace('_',' ')
+        dataset = dataset.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+        dataset.fillna(0, inplace=True)
+
+        severity = pd.read_csv('C:/Users/RUCHITA/disease prediction dsbda/Diseases-Prediction-based-on-Symptoms/Dataset/Symptom-severity.csv')
+        severity['Symptom'] = severity['Symptom'].str.replace('_',' ').str.strip()
+        severity_dict = dict(zip(severity['Symptom'], severity['weight']))
+
+        for col in dataset.columns[1:]:
+            dataset[col] = dataset[col].apply(lambda x: severity_dict.get(x.lower(), 0) if isinstance(x, str) else 0)
+
+        label_encoder = LabelEncoder()
+        dataset['Disease'] = label_encoder.fit_transform(dataset['Disease'])
+
+        X = dataset.drop(columns=['Disease'])
+        y = dataset['Disease']
+
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+        model = RandomForestClassifier()
+        model.fit(X_train, y_train)
+
+        jb.dump(model, 'model_RFC.pkl')
+        jb.dump(label_encoder, 'label_encoder.pkl')
+
+        y_pred = model.predict(X_test)
+        acc = accuracy_score(y_test, y_pred)
+        return acc
+
+    if st.button("Start Training"):
+        with st.spinner("Training model..."):
+            accuracy = training_model()
+        st.success("✅ Model trained and saved!")
+        st.success(f"Model Accuracy: {accuracy * 100:.2f}%")
