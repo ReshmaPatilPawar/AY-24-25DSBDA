@@ -1,0 +1,101 @@
+company,category,product,per_serve_size,energy_(kcal),carbohydrates_(g),protein_(g),fiber_(g),sugar_(g),total_fat_(g),saturated_fat_(g),trans_fat_(g),cholesterol_(mg),sodium_(mg)
+Pizza Hut,All Meals,Corn n Cheese (Personal),143.5 g,432.60,65.64,17.91,3.85,0.0,10.93,5.14,0.16,16.19,499.72
+Pizza Hut,All Meals,Country Feast (Personal),178 g,407.60,67.11,16.73,7.19,0.0,8.03,3.24,0.11,66.80,818.00
+Pizza Hut,All Meals,Double Cheese (Personal),143 g,423.33,59.97,18.26,3.49,0.0,12.27,5.23,0.18,19.75,638.22
+Pizza Hut,All Meals,Double Paneer Supreme (Personal),174.5 g,474.03,52.86,20.07,3.79,0.0,20.26,9.25,0.33,71.72,1128.11
+Pizza Hut,All Meals,Farmer`s Pick (Personal),177 g,408.16,53.93,19.91,2.46,0.0,12.53,4.90,0.14,48.09,942.67
+Pizza Hut,All Meals,Margherita (Personal),130.5 g,361.73,50.69,15.93,4.08,0.0,10.58,3.86,0.12,26.47,713.82
+Pizza Hut,All Meals,Spiced Paneer (Personal),157 g,408.01,47.54,21.68,6.92,0.0,14.57,8.02,0.35,37.37,622.38
+Pizza Hut,All Meals,Tandoori Onion (Personal),139.5 g,410.16,57.14,15.08,1.33,0.0,13.48,4.52,0.13,23.87,826.22
+Pizza Hut,All Meals,Tandoori Paneer (Personal),167.5 g,532.08,76.38,17.82,7.07,0.0,17.25,6.67,0.22,21.67,960.93
+Pizza Hut,All Meals,Veg Exotica (Personal),170.5 g,363.05,55.12,13.66,4.28,0.0,9.77,3.92,0.12,23.96,640.46
+Pizza Hut,All Meals,Veg Kebab Surprise (Personal),160.5 g,490.70,58.04,17.05,6.27,0.0,20.67,7.42,0.22,59.60,1101.96
+Pizza Hut,All Meals,Veggie Supreme (Personal),170.5 g,372.41,57.27,13.44,3.73,0.0,9.88,4.11,0.13,24.60,674.84
+Pizza Hut,Sides,Country Feast (Medium),354 g,782.99,129.60,32.67,13.91,0.0,15.43,6.24,0.20,129.00,1579.24
+Pizza Hut,Sides,Double Cheese (Medium),284 g,845.48,120.63,37.07,6.94,0.0,24.43,10.44,0.36,39.50,1276.44
+Pizza Hut,Sides,Exotica (Medium),339 g,725.74,110.12,27.32,8.54,0.0,19.54,7.84,0.24,47.92,1280.91
+Pizza Hut,Sides,Margherita (Medium),259 g,722.09,101.14,31.86,8.12,0.0,21.16,7.72,0.24,52.93,1427.64
+Pizza Hut,Sides,Peppy Paneer (Medium),333 g,964.01,95.07,43.35,13.84,0.0,41.34,16.04,0.70,74.73,1244.75
+Pizza Hut,Sides,Supreme (Medium),339 g,743.48,114.29,26.89,7.41,0.0,19.76,8.22,0.26,49.20,1349.67
+Pizza Hut,Sides,Tandoori Onion (Medium),277 g,818.84,114.07,30.17,2.64,0.0,26.95,9.04,0.26,47.73,1652.44
+Pizza Hut,Sides,Veg Kebab Surprise (Medium),319 g,979.92,116.08,33.70,12.54,0.0,41.34,14.84,0.44,119.20,2203.92
+Pizza Hut,Sides,Classic Handtossed Veg (Single),110 g,276.36,27.50,9.90,1.10,5.50,13.20,5.50,0.00,0.00,590.00
+Pizza Hut,Sides,Classic Handtossed Veg (Medium),128 g,346.77,34.50,12.40,1.40,6.90,16.60,6.90,0.00,0.00,590.00
+Pizza Hut,Sides,Classic Handtossed Veg (Large),164 g,422.09,42.10,15.10,1.70,8.40,20.20,8.40,0.00,0.00,590.00
+Pizza Hut,Sides,Cheesy Bites Veg (Medium),112 g,261.64,31.10,12.50,1.20,6.20,10.10,3.90,0.10,25.60,670.00
+Pizza Hut,Sides,7 Cheese Blast (Medium),112 g,258.70,31.70,12.50,1.20,6.30,9.60,3.40,0.10,23.30,680.00
+Pizza Hut,Sides,7 Cheese Blast (Large),142 g,307.48,37.70,14.90,1.40,7.50,11.40,4.00,0.10,27.70,790.00
+Pizza Hut,Sides,Italiano (Medium),112 g,246.10,31.40,12.00,1.50,5.30,8.80,3.10,0.10,21.80,660.00
+Pizza Hut,Sides,Italiano (Large),142 g,290.71,37.40,14.30,1.80,6.30,10.50,3.70,0.10,25.90,780.00
+Pizza Hut,Sides,Classic Paneer (Personal),110 g,217.90,25.10,11.50,1.30,4.20,8.60,3.00,0.10,20.10,490.00
+Pizza Hut,Sides,Schezwan Margherita (Personal),110 g,224.61,25.70,10.00,1.30,5.00,9.80,4.20,0.10,19.40,520.00
+Pizza Hut,Sides,Schezwan Margherita (Medium),128 g,261.68,30.00,11.70,1.50,5.90,11.40,4.90,0.10,22.60,610.00
+Pizza Hut,Sides,Schezwan Margherita (Large),164 g,335.15,38.40,15.00,1.90,7.50,14.60,6.30,0.20,29.00,780.00
+Pizza Hut,Sides,Tandoori Soya Supreme (Personal),110 g,208.42,24.30,10.90,1.60,3.80,8.00,2.90,0.10,19.40,550.00
+Pizza Hut,Sides,Tandoori Soya Supreme (Medium),128 g,242.72,28.30,12.70,1.90,4.40,9.30,3.40,0.10,22.60,640.00
+Pizza Hut,Sides,Tandoori Soya Supreme (Large),164 g,311.07,36.30,16.30,2.40,5.70,11.90,4.30,0.10,29.00,820.00
+Pizza Hut,Sides,Spiced Paneer (Personal),110 g,224.61,24.20,11.60,1.40,3.90,9.40,3.60,0.10,23.80,560.00
+Pizza Hut,Sides,Spiced Paneer (Medium),128 g,265.31,28.30,13.50,1.60,4.50,11.00,4.20,0.10,27.80,650.00
+Pizza Hut,Sides,Spiced Paneer (Large),164 g,340.34,36.20,17.30,2.10,5.80,14.10,5.40,0.10,35.60,830.00
+Pizza Hut,Sides,Veggie Supreme (Personal),110 g,222.75,25.60,9.40,1.40,4.20,9.30,3.50,0.10,20.10,560.00
+Pizza Hut,Sides,Veggie Supreme (Medium),128 g,259.54,29.90,11.00,1.70,4.90,10.80,4.10,0.10,23.40,650.00
+Pizza Hut,Sides,Veggie Supreme (Large),164 g,333.05,38.30,14.10,2.10,6.30,13.90,5.20,0.10,30.00,830.00
+Pizza Hut,Sides,Veggie Kebab Surprise (Personal),110 g,230.54,24.80,10.40,1.40,3.80,10.10,3.50,0.10,20.80,580.00
+Pizza Hut,Sides,Veggie Kebab Surprise (Medium),128 g,268.62,28.90,12.10,1.60,4.50,11.70,4.10,0.10,24.20,670.00
+Pizza Hut,Sides,Veggie Kebab Surprise (Large),164 g,344.35,37.00,15.50,2.10,5.70,15.00,5.20,0.10,31.00,860.00
+Pizza Hut,Sides,Tandoori Paneer (Personal),110 g,242.05,25.40,11.20,1.30,4.10,10.60,3.90,0.10,22.30,570.00
+Pizza Hut,Sides,Tandoori Paneer (Medium),128 g,282.05,29.70,13.10,1.50,4.80,12.40,4.60,0.10,26.00,670.00
+Pizza Hut,Sides,Tandoori Paneer (Large),164 g,361.75,38.00,16.80,1.90,6.20,15.90,5.90,0.10,33.40,850.00
+Pizza Hut,Sides,Farmers Pick (Personal),110 g,216.67,25.50,10.50,1.20,4.30,8.60,2.90,0.10,20.10,510.00
+Pizza Hut,Sides,Farmers Pick (Medium),128 g,252.51,29.70,12.30,1.40,5.00,10.00,3.40,0.10,23.40,590.00
+Pizza Hut,Sides,Farmers Pick (Large),164 g,323.82,38.10,15.70,1.80,6.40,12.80,4.30,0.10,30.00,760.00
+Pizza Hut,Sides,Non veg Exotica (Personal),110 g,232.62,25.70,12.60,1.30,4.30,9.40,2.90,0.10,28.60,590.00
+Pizza Hut,Sides,Non veg Exotica (Medium),128 g,271.03,30.00,14.70,1.50,5.00,11.00,3.40,0.10,33.30,690.00
+Pizza Hut,Sides,Non veg Exotica (Large),164 g,347.44,38.40,18.80,1.90,6.40,14.10,4.30,0.10,42.70,880.00
+Pizza Hut,Sides,Chicken Supreme (Personal),110 g,234.84,25.00,12.10,1.20,4.20,9.90,3.80,0.10,30.80,640.00
+Pizza Hut,Sides,Chicken Supreme (Medium),128 g,273.64,29.20,14.10,1.40,4.90,11.50,4.40,0.10,35.90,750.00
+Pizza Hut,Sides,Chicken Supreme (Large),164 g,350.97,37.40,18.10,1.80,6.30,14.80,5.70,0.10,46.00,960.00
+Pizza Hut,Sides,Chicken Tikka (Personal),110 g,217.90,25.40,11.20,1.10,4.40,8.60,3.00,0.10,24.10,560.00
+Pizza Hut,Sides,Chicken Tikka (Medium),128 g,254.12,29.60,13.10,1.30,5.10,10.00,3.50,0.10,28.10,650.00
+Pizza Hut,Sides,Chicken Tikka (Large),164 g,325.74,37.90,16.80,1.70,6.50,12.80,4.50,0.10,36.00,830.00
+Pizza Hut,Sides,Chicken Pepperoni (Personal),110 g,244.01,25.10,12.60,1.10,4.00,10.20,3.50,0.10,31.50,580.00
+Pizza Hut,Sides,Chicken Pepperoni (Medium),128 g,284.27,29.30,14.70,1.30,4.70,11.90,4.10,0.10,36.80,670.00
+Pizza Hut,Sides,Chicken Pepperoni (Large),164 g,364.33,37.50,18.80,1.70,6.00,15.20,5.20,0.10,47.10,860.00
+Pizza Hut,Sides,Chicken Sausage (Personal),110 g,232.91,25.30,11.20,1.10,4.30,9.80,3.70,0.10,25.60,600.00
+Pizza Hut,Sides,Chicken Sausage (Medium),128 g,271.33,29.50,13.10,1.30,5.00,11.40,4.30,0.10,29.90,700.00
+Pizza Hut,Sides,Chicken Sausage (Large),164 g,347.74,37.80,16.80,1.70,6.40,14.60,5.50,0.10,38.30,900.00
+Pizza Hut,Sides,Chicken Exotica (Personal),110 g,220.68,25.70,12.10,1.30,4.40,8.60,2.90,0.10,26.40,580.00
+Pizza Hut,Sides,Chicken Exotica (Medium),128 g,257.26,30.00,14.10,1.50,5.10,10.00,3.40,0.10,30.80,680.00
+Pizza Hut,Sides,Chicken Exotica (Large),164 g,329.86,38.40,18.10,1.90,6.50,12.80,4.30,0.10,39.50,870.00
+Pizza Hut,Sides,Triple Chicken Feast (Personal),110 g,226.01,25.20,12.40,1.10,4.20,9.10,3.20,0.10,28.60,620.00
+Pizza Hut,Sides,Triple Chicken Feast (Medium),128 g,263.42,29.40,14.50,1.30,4.90,10.60,3.70,0.10,33.30,720.00
+Pizza Hut,Sides,Triple Chicken Feast (Large),164 g,337.64,37.60,18.60,1.70,6.30,13.60,4.80,0.10,42.70,930.00
+Pizza Hut,Sides,Chicken n Corn (Personal),110 g,222.18,25.60,10.90,1.20,4.40,9.10,3.50,0.10,22.60,560.00
+Pizza Hut,Sides,Chicken n Corn (Medium),128 g,258.99,29.90,12.70,1.40,5.10,10.60,4.10,0.10,26.30,650.00
+Pizza Hut,Sides,Chicken n Corn (Large),164 g,332.33,38.30,16.30,1.80,6.50,13.60,5.20,0.10,33.70,840.00
+Pizza Hut,Sides,Chilli Chicken (Personal),110 g,217.33,25.40,12.50,1.20,4.10,7.90,2.20,0.00,28.60,630.00
+Pizza Hut,Sides,Chilli Chicken (Medium),128 g,253.47,29.60,14.60,1.40,4.80,9.20,2.60,0.00,33.30,730.00
+Pizza Hut,Sides,Chilli Chicken (Large),164 g,324.97,37.90,18.70,1.80,6.10,11.80,3.30,0.10,42.70,940.00
+Pizza Hut,Sides,Classic Handtossed Non Veg (Personal),110 g,288.10,27.50,11.00,1.10,5.50,15.10,5.50,0.00,0.00,590.00
+Pizza Hut,Sides,Classic Handtossed Non Veg (Medium),128 g,361.46,34.50,13.80,1.40,6.90,18.90,6.90,0.00,0.00,740.00
+Pizza Hut,Sides,Classic Handtossed Non Veg (Large),164 g,439.48,42.10,16.90,1.70,8.40,23.10,8.40,0.00,0.00,900.00
+Pizza Hut,Sides,Cheesy Bites Non Veg (Medium),112 g,284.20,31.10,13.80,1.20,6.20,12.00,3.90,0.10,25.60,670.00
+Pizza Hut,Sides,7 Cheese Blast Non Veg (Medium),112 g,271.29,31.70,13.90,1.20,6.30,10.50,3.40,0.10,23.30,680.00
+Pizza Hut,Sides,7 Cheese Blast Non Veg (Large),142 g,319.78,37.70,16.30,1.40,7.50,12.30,4.00,0.10,27.70,790.00
+Pizza Hut,Sides,Italiano Non Veg (Medium),112 g,259.26,31.40,13.40,1.50,5.30,9.70,3.10,0.10,21.80,660.00
+Pizza Hut,Sides,Italiano Non Veg (Large),142 g,303.58,37.40,15.70,1.80,6.30,11.40,3.70,0.10,25.90,780.00
+Pizza Hut,Sides,Garlic Bread (Single),75 g,203.28,28.00,5.60,1.00,2.40,8.60,3.70,0.10,15.00,720.00
+Pizza Hut,Sides,Garlic Bread Supreme (Single),95 g,252.39,28.70,9.10,1.40,2.90,12.60,5.50,0.20,22.80,820.00
+Pizza Hut,Sides,Spicy Baked Chicken Wings (4 Pcs),80 g,141.73,1.10,17.20,0.20,0.70,8.40,2.30,0.10,85.60,640.00
+Pizza Hut,Sides,Spicy Baked Chicken Wings (8 Pcs),160 g,283.46,2.10,34.30,0.50,1.40,16.80,4.60,0.10,171.20,1280.00
+Pizza Hut,Sides,Potato Wedges (Single),100 g,231.00,29.00,3.00,0.00,0.00,12.00,3.00,0.00,0.00,200.00
+Pizza Hut,Sides,Potato Wedges (Medium),135 g,311.85,39.10,4.00,0.00,0.00,16.20,4.00,0.00,0.00,270.00
+Pizza Hut,Sides,Exotica Veggie Pasta,321 g,383.00,54.50,11.20,3.00,6.70,14.80,2.50,0.10,2.60,1600.00
+Pizza Hut,Sides,Schezwan Chicken Pasta,318 g,406.64,51.00,25.00,2.50,6.40,10.30,3.50,0.10,48.20,1830.00
+Pizza Hut,Sides,Corn & Cheese Parcel (2 Pcs),70 g,240.37,25.00,5.40,1.50,0.90,14.10,7.00,0.10,0.00,580.00
+Pizza Hut,Sides,Veg Parcel (2 Pcs),70 g,255.38,25.10,5.50,2.30,0.90,15.10,7.40,0.10,0.00,580.00
+Pizza Hut,Sides,My Box Veg Parcel (2 Pcs),70 g,255.38,25.10,5.50,2.30,0.90,15.10,7.40,0.10,0.00,580.00
+Pizza Hut,Sides,Pure Veg My Box Veg Parcel (2 Pcs),70 g,255.38,25.10,5.50,2.30,0.90,15.10,7.40,0.10,0.00,580.00
+Pizza Hut,Sides,My Box Paneer Parcel (2 Pcs),70 g,254.10,25.10,5.50,2.30,0.90,15.00,7.10,0.10,2.80,580.00
+Pizza Hut,Sides,Pure Veg My Box Paneer Parcel (2 Pcs),70 g,254.10,25.10,5.50,2.30,0.90,15.00,7.10,0.10,2.80,580.00
+Pizza Hut,Sides,My Box Chicken Parcel (2 Pcs),70 g,268.05,25.40,8.50,2.40,0.90,15.60,7.50,0.10,9.10,630.00
