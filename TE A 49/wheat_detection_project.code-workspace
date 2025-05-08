@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "../../../wheat_detection_project"
+		}
+	],
+	"settings": {
+		"java.project.sourcePaths": [
+			""
+		]
+	}
+}
