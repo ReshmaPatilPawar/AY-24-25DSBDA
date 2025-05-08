@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Match Winner Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f7;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #ccc;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            margin-top: 10px;
+            display: block;
+            font-weight: bold;
+        }
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .result {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 15px;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Predict Match Winner</h2>
+        <form method="POST" action="/predict">
+            <label for="team1">Team 1</label>
+            <select name="team1" required>
+                <option value="Chennai Super Kings">Chennai Super Kings</option>
+                <option value="Delhi Capitals">Delhi Capitals</option>
+                <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                <option value="Mumbai Indians">Mumbai Indians</option>
+                <option value="Rajasthan Royals">Rajasthan Royals</option>
+                <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+                <option value="Punjab Kings">Punjab Kings</option>
+            </select>
+
+            <label for="team2">Team 2</label>
+            <select name="team2" required>
+                <option value="Chennai Super Kings">Chennai Super Kings</option>
+                <option value="Delhi Capitals">Delhi Capitals</option>
+                <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                <option value="Mumbai Indians">Mumbai Indians</option>
+                <option value="Rajasthan Royals">Rajasthan Royals</option>
+                <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+                <option value="Punjab Kings">Punjab Kings</option>
+            </select>
+
+            <label for="toss_winner">Toss Winner</label>
+            <select name="toss_winner" required>
+                <option value="Chennai Super Kings">Chennai Super Kings</option>
+                <option value="Delhi Capitals">Delhi Capitals</option>
+                <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                <option value="Mumbai Indians">Mumbai Indians</option>
+                <option value="Rajasthan Royals">Rajasthan Royals</option>
+                <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+                <option value="Punjab Kings">Punjab Kings</option>
+            </select>
+
+            <label for="toss_decision">Toss Decision</label>
+            <select name="toss_decision" required>
+                <option value="bat">Bat</option>
+                <option value="field">Field</option>
+            </select>
+
+            <label for="venue">Venue</label>
+            <select name="venue" required>
+                <option value="Wankhede Stadium">Wankhede Stadium</option>
+                <option value="M Chinnaswamy Stadium">M Chinnaswamy Stadium</option>
+                <option value="Eden Gardens">Eden Gardens</option>
+                <option value="Feroz Shah Kotla">Feroz Shah Kotla</option>
+                <option value="Punjab Cricket Association Stadium, Mohali">Punjab Cricket Association Stadium, Mohali</option>
+                <option value="Rajiv Gandhi International Stadium">Rajiv Gandhi International Stadium</option>
+                <option value="Sawai Mansingh Stadium">Sawai Mansingh Stadium</option>
+                <option value="MA Chidambaram Stadium">MA Chidambaram Stadium</option>
+            </select>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            Predicted Winner: {{ prediction }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
