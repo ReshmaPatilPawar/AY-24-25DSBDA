@@ -1,0 +1,22 @@
+CropType,SoilType,FarmingSystem,Area(ha),AvgTemperature(C),AvgHumidity(%),AnnualRainfall(mm),SoilPH,Nitrogen(N),Phosphorus(P),Potassium(K),PreviousYield(tons),IrrigationType,SeedQuality,FertilizerType,PestControlMethod,ExpectedYield(tons)
+Wheat,Loamy,Organic,5,22,65,750,6.5,60,55,70,12,Drip,High,Organic Compost,Natural Predators,15
+Rice,Clayey,Conventional,3,28,80,1200,6.8,70,65,80,10,Flood,Medium,Chemical,Natural Predators,13
+Maize,Sandy,Integrated,10,26,60,900,7.0,55,50,60,20,Drip,High,Organic Compost,Biological,25
+Wheat,Loamy,Conventional,7,23,62,800,6.6,58,54,68,14,Drip,High,Chemical,Biological,17
+Barley,Loamy,Organic,4,20,55,600,7.2,50,45,50,8,Drip,Medium,Organic Compost,Manual Removal,10
+Rice,Clayey,Organic,6,29,85,1300,6.9,72,66,75,11,Flood,High,Organic Compost,Natural Predators,14
+Maize,Sandy,Organic,8,27,70,950,7.1,60,52,63,19,Drip,High,Organic Compost,Biological,23
+Soybean,Loamy,Integrated,3,24,60,700,6.7,55,50,55,6,Drip,High,Chemical,Biological,8
+Wheat,Clayey,Conventional,12,21,68,850,6.4,62,58,65,20,Drip,Medium,Chemical,Chemical Spray,24
+Rice,Clayey,Integrated,5,30,90,1400,6.8,75,70,80,12,Flood,High,Organic Compost,Natural Predators,16
+Maize,Sandy,Conventional,9,25,65,920,7.2,58,53,60,18,Drip,High,Chemical,Biological,21
+Barley,Loamy,Integrated,5,19,52,580,7.0,52,48,53,7,Drip,Medium,Organic Compost,Manual Removal,9
+Soybean,Sandy,Organic,4,26,70,750,7.1,50,45,55,5,Drip,High,Organic Compost,Biological,7
+Wheat,Loamy,Integrated,6,22,60,790,6.5,61,56,69,13,Drip,High,Organic Compost,Natural Predators,16
+Rice,Clayey,Conventional,7,29,88,1350,6.9,73,67,77,13,Flood,High,Chemical,Chemical Spray,17
+Maize,Loamy,Integrated,11,26,66,980,7.0,59,55,65,21,Drip,High,Organic Compost,Biological,26
+Soybean,Clayey,Conventional,2,25,68,820,6.8,53,49,52,4,Drip,Medium,Chemical,Chemical Spray,6
+Barley,Loamy,Organic,3,20,57,610,7.1,51,46,50,7,Drip,High,Organic Compost,Manual Removal,9
+Wheat,Sandy,Integrated,10,23,61,800,6.7,60,55,66,19,Drip,High,Organic Compost,Biological,22
+Rice,Clayey,Organic,8,28,87,1250,6.9,71,66,78,12,Flood,High,Organic Compost,Natural Predators,15
+Maize,Loamy,Conventional,7,26,65,950,7.2,57,54,62,16,Drip,Medium,Chemical,Biological,20
