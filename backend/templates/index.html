@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Housing Price Prediction</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Predict Housing Price</h2>
+        <form id="predictionForm">
+            <label>Lot Size: <input type="number" name="lotsize" required></label>
+            <label>Bedrooms: <input type="number" name="bedrooms" required></label>
+            <label>Bathrooms: <input type="number" name="bathrms" required></label>
+            <label>Stories: <input type="number" name="stories" required></label>
+            <label>Driveway (1 for Yes, 0 for No): <input type="number" name="driveway" required></label>
+            <label>Recreation Room (1 for Yes, 0 for No): <input type="number" name="recroom" required></label>
+            <label>Full Basement (1 for Yes, 0 for No): <input type="number" name="fullbase" required></label>
+            <label>Gas Hot Water (1 for Yes, 0 for No): <input type="number" name="gashw" required></label>
+            <label>Air Conditioning (1 for Yes, 0 for No): <input type="number" name="airco" required></label>
+            <label>Garage Places: <input type="number" name="garagepl" required></label>
+            <label>Preferred Area (1 for Yes, 0 for No): <input type="number" name="prefarea" required></label>
+            <button type="submit">Predict</button>
+        </form>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('predictionForm');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    body: new URLSearchParams(formData)
+                });
+
+                const result = await response.json();
+                const resultDiv = document.getElementById('result');
+                if (result.predicted_price) {
+                    resultDiv.textContent = `Predicted Price: $${result.predicted_price}`;
+                    resultDiv.classList.remove('error');
+                } else {
+                    resultDiv.textContent = `Error: ${result.error}`;
+                    resultDiv.classList.add('error');
+                }
+            } catch (err) {
+                console.error('Error:', err);
+            }
+        });
+    </script>
+</body>
+</html>

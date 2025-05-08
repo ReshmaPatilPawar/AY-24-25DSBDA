@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Retail Store Sales Predictor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #e0f7fa, #80deea);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            padding: 40px;
+            margin: 0;
+        }
+
+        h1 {
+            color: #006064;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+            color: #004d40;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #b2ebf2;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #00acc1;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #007c91;
+        }
+
+        #result {
+            margin-top: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #004d40;
+        }
+    </style>
+</head>
+<body>
+    <h1>🛍️ Retail Store Sales Predictor</h1>
+    <form id="predictForm">
+        <label for="store_id">Store ID</label>
+        <input type="number" id="store_id" required>
+
+        <label for="product_id">Product ID</label>
+        <input type="number" id="product_id" required>
+
+        <label for="promotion">Promotion (0 = No, 1 = Yes)</label>
+        <input type="number" id="promotion" min="0" max="1" required>
+
+        <label for="holiday">Holiday (0 = No, 1 = Yes)</label>
+        <input type="number" id="holiday" min="0" max="1" required>
+
+        <label for="day">Day</label>
+        <input type="number" id="day" min="1" max="31" required>
+
+        <label for="month">Month</label>
+        <input type="number" id="month" min="1" max="12" required>
+
+        <label for="year">Year</label>
+        <input type="number" id="year" min="2020" max="2030" required>
+
+        <button type="submit">Predict Sales</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('predictForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const data = {
+                Store_ID: parseInt(document.getElementById('store_id').value),
+                Product_ID: parseInt(document.getElementById('product_id').value),
+                Promotion: parseInt(document.getElementById('promotion').value),
+                Holiday: parseInt(document.getElementById('holiday').value),
+                Day: parseInt(document.getElementById('day').value),
+                Month: parseInt(document.getElementById('month').value),
+                Year: parseInt(document.getElementById('year').value),
+            };
+
+            const response = await fetch('http://127.0.0.1:5000/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+            document.getElementById('result').innerText = `📊 Predicted Sales: ${result.predicted_sales.toFixed(2)} units`;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Prediction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin: 60px auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            font-size: 16px;
+            color: #333;
+        }
+        .form-group input[type="range"] {
+            width: 100%;
+            margin-top: 5px;
+        }
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        .form-group .value {
+            font-size: 14px;
+            color: #555;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 32px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .prediction-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        Breast Cancer Prediction
+    </header>
+
+    <div class="container">
+        <h1>Enter the Features</h1>
+        <form action="/predict" method="POST">
+            <!-- Radius Mean -->
+            <div class="form-group">
+                <label for="radius_mean">Radius Mean</label>
+                <input type="range" id="radius_mean" name="radius_mean" min="6.0" max="28.0" step="0.1" value="10.0">
+                <input type="number" id="radius_mean_value" name="radius_mean_value" value="10.0" min="6.0" max="28.0" step="0.1">
+                <p class="value" id="radius_value">Range: 6.0 - 28.0</p>
+            </div>
+
+            <!-- Texture Mean -->
+            <div class="form-group">
+                <label for="texture_mean">Texture Mean</label>
+                <input type="range" id="texture_mean" name="texture_mean" min="9.0" max="40.0" step="0.1" value="15.0">
+                <input type="number" id="texture_mean_value" name="texture_mean_value" value="15.0" min="9.0" max="40.0" step="0.1">
+                <p class="value" id="texture_value">Range: 9.0 - 40.0</p>
+            </div>
+
+            <!-- Perimeter Mean -->
+            <div class="form-group">
+                <label for="perimeter_mean">Perimeter Mean</label>
+                <input type="range" id="perimeter_mean" name="perimeter_mean" min="43.0" max="200.0" step="0.1" value="65.0">
+                <input type="number" id="perimeter_mean_value" name="perimeter_mean_value" value="65.0" min="43.0" max="200.0" step="0.1">
+                <p class="value" id="perimeter_value">Range: 43.0 - 200.0</p>
+            </div>
+
+            <!-- Area Mean -->
+            <div class="form-group">
+                <label for="area_mean">Area Mean</label>
+                <input type="range" id="area_mean" name="area_mean" min="150.0" max="2500.0" step="10" value="400.0">
+                <input type="number" id="area_mean_value" name="area_mean_value" value="400.0" min="150.0" max="2500.0" step="10">
+                <p class="value" id="area_value">Range: 150.0 - 2500.0</p>
+            </div>
+
+            <!-- Concavity Mean -->
+            <div class="form-group">
+                <label for="concavity_mean">Concavity Mean</label>
+                <input type="range" id="concavity_mean" name="concavity_mean" min="0.0" max="1.0" step="0.01" value="0.1">
+                <input type="number" id="concavity_mean_value" name="concavity_mean_value" value="0.1" min="0.0" max="1.0" step="0.01">
+                <p class="value" id="concavity_value">Range: 0.0 - 1.0</p>
+            </div>
+
+            <!-- Concave Points Mean -->
+            <div class="form-group">
+                <label for="concave_points_mean">Concave Points Mean</label>
+                <input type="range" id="concave_points_mean" name="concave_points_mean" min="0.0" max="0.3" step="0.01" value="0.02">
+                <input type="number" id="concave_points_mean_value" name="concave_points_mean_value" value="0.02" min="0.0" max="0.3" step="0.01">
+                <p class="value" id="concave_points_value">Range: 0.0 - 0.3</p>
+            </div>
+
+            <button type="submit" class="button">Predict</button>
+        </form>
+
+        <div class="prediction-text">
+            {% if prediction_text %}
+                <p>{{ prediction_text }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <footer>
+        © 2025 Breast Cancer Prediction System | All Rights Reserved
+    </footer>
+
+    <script>
+        // Update the value when the range input changes
+        document.querySelectorAll('input[type="range"]').forEach(function(slider) {
+            slider.addEventListener('input', function() {
+                var value = slider.value;
+                var numberInput = document.getElementById(slider.id + "_value");
+                numberInput.value = value;
+            });
+        });
+    </script>
+
+</body>
+</html>

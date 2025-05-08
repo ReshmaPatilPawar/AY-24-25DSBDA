@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EV Charging Station Predictor</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+      font-size: 24px;
+    }
+
+    input, button {
+      display: block;
+      margin: 10px 0;
+      padding: 12px;
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: #f9f9f9;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, button:focus {
+      outline: none;
+      border-color: #4CAF50;
+    }
+
+    input[type="number"] {
+      background-color: #f1f1f1;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    button:active {
+      background-color: #388e3c;
+    }
+
+    #result {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
+      color: #4CAF50;
+    }
+
+    /* Responsive Styling */
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>EV Charging Station Recommendation</h2>
+    <form id="predictForm">
+      <input type="number" placeholder="Population Density" id="population_density" required />
+      <input type="number" step="0.1" placeholder="Traffic Density" id="traffic_density" required />
+      <input type="number" placeholder="EV Count" id="ev_count" required />
+      <input type="number" step="0.1" placeholder="Distance from Nearest Station (km)" id="distance" required />
+      <button type="submit">Predict</button>
+    </form>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    document.getElementById('predictForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        population_density: +document.getElementById('population_density').value,
+        traffic_density: +document.getElementById('traffic_density').value,
+        ev_count: +document.getElementById('ev_count').value,
+        distance_from_nearest_station: +document.getElementById('distance').value,
+      };
+
+      const res = await fetch('http://127.0.0.1:5000/predict', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+      document.getElementById('result').textContent = `Available: ${result.recommendation}`;
+    });
+  </script>
+</body>
+</html>

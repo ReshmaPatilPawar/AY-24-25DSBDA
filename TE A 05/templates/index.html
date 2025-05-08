@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heart Failure Prediction</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 400px;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Heart Failure Prediction</h1>
+
+        <form action="/predict" method="POST">
+            <input type="number" name="age" placeholder="Age" required>
+            <input type="number" name="sex" placeholder="Sex (1=Male, 0=Female)" required>
+            <input type="number" name="cp" placeholder="Chest Pain Type (0-3)" required>
+            <input type="number" name="trestbps" placeholder="Resting Blood Pressure" required>
+            <input type="number" name="chol" placeholder="Cholesterol" required>
+            <input type="number" name="fbs" placeholder="Fasting Blood Sugar (>120 mg/dl -> 1 else 0)" required>
+            <input type="number" name="restecg" placeholder="Resting ECG (0-2)" required>
+            <input type="number" name="thalach" placeholder="Max Heart Rate Achieved" required>
+            <input type="number" name="exang" placeholder="Exercise Induced Angina (1=Yes, 0=No)" required>
+            <input type="number" step="any" name="oldpeak" placeholder="Oldpeak" required>
+            <input type="number" name="slope" placeholder="Slope (0-2)" required>
+            <input type="number" name="ca" placeholder="Number of Major Vessels (0-3)" required>
+            <input type="number" name="thal" placeholder="Thal (1=Normal, 2=Fixed Defect, 3=Reversible Defect)" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction_text %}
+            <h2>{{ prediction_text }}</h2>
+        {% endif %}
+
+    </div>
+</body>
+</html>

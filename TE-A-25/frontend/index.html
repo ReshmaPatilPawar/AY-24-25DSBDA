@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zomato Rating Predictor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+            
+      
+    <div class="container">
+        <h1>Zamato Restaurant Prediction</h1>
+        
+       
+        <form id="ratingForm">
+           
+            <label>Online Order:</label>
+            <select id="online_order">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Book Table:</label>
+            <select id="book_table">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Location (Encoded):</label>
+            <input type="number" id="location" placeholder="e.g., 5">
+
+            <label>Restaurant Type (Encoded):</label>
+            <input type="number" id="rest_type" placeholder="e.g., 3">
+
+            <label>Cuisines (Encoded):</label>
+            <input type="number" id="cuisines" placeholder="e.g., 7">
+
+            <label>Approx Cost (for two):</label>
+            <input type="number" id="cost" placeholder="e.g., 500">
+
+            <label>Listed In (Encoded):</label>
+            <input type="number" id="listed_in" placeholder="e.g., 2">
+
+            <label>Votes:</label>
+            <input type="number" id="votes" placeholder="e.g., 250">
+
+            <button type="submit">Predict Rating</button>
+        </form>
+
+        <div id="result-box">
+            <p id="result">Enter details and hit predict</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

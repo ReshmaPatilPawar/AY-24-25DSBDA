@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Thyroid Health - ThyroPredict</title>
+    <meta name="description" content="Learn about thyroid function, disorders, and the importance of early detection.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                        <path d="M12 5 8.5 9.5"></path>
+                        <path d="M12 5v14"></path>
+                        <path d="M12 5 15.5 9.5"></path>
+                    </svg>
+                    ThyroPredict
+                </a>
+                <button class="mobile-nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <ul id="nav-menu" class="nav-menu">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/predict" class="nav-link">Predict</a></li>
+                    <li><a href="/about" class="nav-link active">About Thyroid</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" style="background: linear-gradient(135deg, var(--secondary-light) 0%, var(--secondary) 100%);">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Understanding Thyroid Health</h1>
+                <p>Learn about the thyroid gland, its functions, and common disorders that affect millions worldwide.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-thyroid" style="padding: var(--space-xxl) 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col" style="max-width: 800px; margin: 0 auto;">
+                    <div class="card">
+                        <h2 class="card-title">What is the Thyroid Gland?</h2>
+                        <p>The thyroid is a butterfly-shaped gland located at the base of your neck, just below the Adam's apple. It's part of the endocrine system, which produces hormones that coordinate many of your body's activities.</p>
+                        <p>The thyroid gland produces two main hormones: triiodothyronine (T3) and thyroxine (T4). These hormones regulate your metabolism—the way your body uses energy—and affect nearly every organ in your body.</p>
+                        <img src="https://images.pexels.com/photos/4225987/pexels-photo-4225987.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Medical illustration of thyroid gland" style="width: 100%; max-width: 600px; height: auto; margin: var(--space-lg) auto; display: block; border-radius: var(--border-radius-md);">
+                    </div>
+                    
+                    <div class="card">
+                        <h2 class="card-title">How Does the Thyroid Work?</h2>
+                        <p>The thyroid's function is regulated by the pituitary gland, which is located at the base of your brain. The pituitary gland produces thyroid-stimulating hormone (TSH), which signals the thyroid to produce more or less of its hormones.</p>
+                        <p>When functioning properly, your thyroid produces the right amount of hormones to keep your metabolism running smoothly. However, sometimes the thyroid produces too much or too little of these hormones, leading to thyroid disorders.</p>
+                        <h3 style="margin-top: var(--space-lg); color: var(--primary);">The Thyroid Hormone Process:</h3>
+                        <ol style="margin-left: var(--space-lg);">
+                            <li>The hypothalamus produces Thyrotropin-Releasing Hormone (TRH)</li>
+                            <li>TRH stimulates the pituitary gland to produce Thyroid-Stimulating Hormone (TSH)</li>
+                            <li>TSH stimulates the thyroid gland to produce T3 and T4 hormones</li>
+                            <li>T3 and T4 hormones regulate metabolism throughout the body</li>
+                            <li>When T3 and T4 levels are sufficient, they signal the pituitary to reduce TSH production (negative feedback loop)</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="card">
+                        <h2 class="card-title">Common Thyroid Disorders</h2>
+                        
+                        <div class="disorder-section" style="margin-bottom: var(--space-xl);">
+                            <h3 style="color: var(--warning);">Hypothyroidism (Underactive Thyroid)</h3>
+                            <p>Hypothyroidism occurs when the thyroid doesn't produce enough hormones. This slows down many bodily functions and can cause a variety of symptoms.</p>
+                            <h4>Common Symptoms:</h4>
+                            <ul style="margin-left: var(--space-lg);">
+                                <li>Fatigue and sluggishness</li>
+                                <li>Increased sensitivity to cold</li>
+                                <li>Constipation</li>
+                                <li>Dry skin and hair</li>
+                                <li>Unexplained weight gain</li>
+                                <li>Depression</li>
+                                <li>Elevated cholesterol levels</li>
+                                <li>Muscle aches and weakness</li>
+                                <li>Joint pain and stiffness</li>
+                                <li>Irregular or heavy menstrual periods</li>
+                            </ul>
+                            <p style="margin-top: var(--space-md);"><strong>Common causes:</strong> Hashimoto's thyroiditis (an autoimmune disorder), thyroid surgery, radiation therapy, certain medications.</p>
+                        </div>
+                        
+                        <div class="disorder-section" style="margin-bottom: var(--space-xl);">
+                            <h3 style="color: var(--error);">Hyperthyroidism (Overactive Thyroid)</h3>
+                            <p>Hyperthyroidism occurs when the thyroid produces too much T4, T3, or both. This speeds up your metabolism and can cause a variety of symptoms.</p>
+                            <h4>Common Symptoms:</h4>
+                            <ul style="margin-left: var(--space-lg);">
+                                <li>Unintentional weight loss</li>
+                                <li>Rapid heartbeat (tachycardia)</li>
+                                <li>Increased appetite</li>
+                                <li>Nervousness, anxiety and irritability</li>
+                                <li>Tremor in hands and fingers</li>
+                                <li>Sweating and heat sensitivity</li>
+                                <li>Changes in menstrual patterns</li>
+                                <li>Increased bowel movements</li>
+                                <li>Enlarged thyroid gland (goiter)</li>
+                                <li>Fatigue and muscle weakness</li>
+                            </ul>
+                            <p style="margin-top: var(--space-md);"><strong>Common causes:</strong> Graves' disease (an autoimmune disorder), thyroid nodules, inflammation of the thyroid (thyroiditis).</p>
+                        </div>
+                        
+                        <div class="disorder-section">
+                            <h3 style="color: var(--text-dark);">Other Thyroid Conditions</h3>
+                            <ul style="margin-left: var(--space-lg);">
+                                <li><strong>Goiter:</strong> An enlargement of the thyroid gland that can be caused by iodine deficiency or other thyroid disorders.</li>
+                                <li><strong>Thyroid Nodules:</strong> Growths that form within the thyroid. Most are benign, but some can be cancerous.</li>
+                                <li><strong>Thyroiditis:</strong> Inflammation of the thyroid, which can cause either hyperthyroidism or hypothyroidism.</li>
+                                <li><strong>Thyroid Cancer:</strong> Although rare, thyroid cancer is highly treatable with early detection.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h2 class="card-title">Importance of Early Detection</h2>
+                        <p>Thyroid disorders often develop slowly and symptoms can be subtle, making them challenging to detect without proper testing. However, early detection and treatment are crucial for preventing complications:</p>
+                        <ul style="margin-left: var(--space-lg);">
+                            <li><strong>Prevents progression of symptoms</strong> - Untreated thyroid disorders can worsen over time</li>
+                            <li><strong>Reduces risk of complications</strong> - Such as cardiovascular problems or osteoporosis</li>
+                            <li><strong>Improves quality of life</strong> - By addressing symptoms that affect daily functioning</li>
+                            <li><strong>Prevents developmental issues</strong> - Particularly important during pregnancy and for infant development</li>
+                        </ul>
+                        <p>This is why tools like ThyroPredict can be valuable for identifying potential thyroid issues before they cause significant health problems.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h2 class="card-title">Thyroid Testing and Diagnosis</h2>
+                        <p>Thyroid disorders are diagnosed through blood tests that measure hormone levels. The most common tests include:</p>
+                        <ul style="margin-left: var(--space-lg);">
+                            <li><strong>TSH Test:</strong> Measures thyroid-stimulating hormone levels to determine if the thyroid is functioning properly.</li>
+                            <li><strong>T4 Test:</strong> Measures thyroxine levels, which can indicate hyperthyroidism or hypothyroidism.</li>
+                            <li><strong>T3 Test:</strong> Measures triiodothyronine levels, which can help diagnose hyperthyroidism.</li>
+                            <li><strong>Thyroid Antibody Tests:</strong> Detect antibodies that may indicate an autoimmune thyroid disorder.</li>
+                        </ul>
+                        <p>Additional diagnostic tools may include ultrasound imaging, radioactive iodine uptake tests, or fine-needle aspiration biopsies for thyroid nodules.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h2 class="card-title">Treatment Options</h2>
+                        <p>Treatment for thyroid disorders depends on the specific condition, but may include:</p>
+                        
+                        <h3 style="margin-top: var(--space-lg); color: var(--warning);">For Hypothyroidism:</h3>
+                        <ul style="margin-left: var(--space-lg);">
+                            <li><strong>Synthetic thyroid hormone (levothyroxine):</strong> Replaces the missing thyroid hormone</li>
+                            <li><strong>Regular monitoring:</strong> To adjust medication dosage as needed</li>
+                        </ul>
+                        
+                        <h3 style="margin-top: var(--space-lg); color: var(--error);">For Hyperthyroidism:</h3>
+                        <ul style="margin-left: var(--space-lg);">
+                            <li><strong>Anti-thyroid medications:</strong> Reduce hormone production</li>
+                            <li><strong>Radioactive iodine:</strong> Destroys overactive thyroid cells</li>
+                            <li><strong>Beta blockers:</strong> Control symptoms like rapid heart rate</li>
+                            <li><strong>Surgery:</strong> Remove part or all of the thyroid (thyroidectomy)</li>
+                        </ul>
+                        
+                        <p style="margin-top: var(--space-lg);">Always consult with a healthcare provider for proper diagnosis and treatment recommendations.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h2 class="card-title">Lifestyle and Thyroid Health</h2>
+                        <p>While many thyroid conditions require medical treatment, certain lifestyle factors can support thyroid health:</p>
+                        <ul style="margin-left: var(--space-lg);">
+                            <li><strong>Balanced nutrition:</strong> Ensure adequate iodine intake through foods like seafood and iodized salt</li>
+                            <li><strong>Selenium-rich foods:</strong> Brazil nuts, fish, and eggs can support thyroid function</li>
+                            <li><strong>Regular exercise:</strong> Can help manage weight and improve energy levels</li>
+                            <li><strong>Stress management:</strong> Chronic stress may impact thyroid function</li>
+                            <li><strong>Limit goitrogenic foods:</strong> In cases of hypothyroidism, limit raw cruciferous vegetables like broccoli and cabbage</li>
+                            <li><strong>Regular check-ups:</strong> Especially important if you have a family history of thyroid disorders</li>
+                        </ul>
+                        <p>These lifestyle factors should complement, not replace, medical treatment for thyroid disorders.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="resources" style="margin-bottom: var(--space-xxl);">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: var(--space-xl);">Additional Resources</h2>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <h3 class="card-title">Medical Organizations</h3>
+                        <ul style="margin-left: var(--space-lg);">
+                            <li><a href="https://www.thyroid.org/" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">American Thyroid Association</a></li>
+                            <li><a href="https://www.endocrine.org/" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">Endocrine Society</a></li>
+                            <li><a href="https://www.thyroidawareness.com/" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">Thyroid Awareness</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <h3 class="card-title">Support Groups</h3>
+                        <ul style="margin-left: var(--space-lg);">
+                            <li><a href="https://www.thyroidchange.org/" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">ThyroidChange</a></li>
+                            <li><a href="https://www.light-of-life-foundation.org/" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">Light of Life Foundation</a> (Thyroid Cancer)</li>
+                            <li><a href="https://www.thyroidcancersurvivors.org/" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">ThyCa: Thyroid Cancer Survivors' Association</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <h3 class="card-title">Research and News</h3>
+                        <ul style="margin-left: var(--space-lg);">
+                            <li><a href="https://www.ncbi.nlm.nih.gov/pmc/?term=thyroid" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">PubMed Central - Thyroid Research</a></li>
+                            <li><a href="https://www.medscape.com/resource/thyroid-disorders" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">Medscape - Thyroid Disorders</a></li>
+                            <li><a href="https://www.clinicalthyroidology.org/" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">Clinical Thyroidology</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="/" class="footer-logo">ThyroPredict</a>
+                    <p>Advanced thyroid prediction using machine learning. Early detection for better health outcomes.</p>
+                </div>
+                <div class="footer-links-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/predict">Prediction Tool</a></li>
+                        <li><a href="/about">About Thyroid</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Thyroid Health Guide</a></li>
+                        <li><a href="#">Understanding Lab Results</a></li>
+                        <li><a href="#">Treatment Options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ThyroPredict. All rights reserved. This tool is for educational purposes only and is not a substitute for professional medical advice.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admission Predictor</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+      position: relative;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: #555;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    .tooltip-icon {
+      margin-left: 5px;
+      color: #007BFF;
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-size: 14px;
+    }
+    .tooltip-text {
+      display: none;
+      position: absolute;
+      background-color: #333;
+      color: #fff;
+      padding: 8px;
+      border-radius: 5px;
+      font-size: 12px;
+      top: 25px;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+    }
+    .form-group:hover .tooltip-text {
+      display: block;
+    }
+    input[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background-color: #007BFF;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      text-align: center;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #007BFF;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Admission Chance Predictor</h2>
+    <form action="/predict" method="post">
+      
+      <div class="form-group">
+        <label>Enter GRE Score 
+          <button class="tooltip-icon" type="button">i</button>
+          <div class="tooltip-text">GRE scores range from 260 to 340.</div>
+        </label>
+        <input type="number" name="gre" step="any" required>
+      </div>
+
+      <div class="form-group">
+        <label>Enter TOEFL Score 
+          <button class="tooltip-icon" type="button">i</button>
+          <div class="tooltip-text">TOEFL scores range from 0 to 120.</div>
+        </label>
+        <input type="number" name="toefl" step="any" required>
+      </div>
+
+      <div class="form-group">
+        <label>University Rating (1 to 5) 
+          <button class="tooltip-icon" type="button">i</button>
+          <div class="tooltip-text">Rate your university from 1 (low) to 5 (high).</div>
+        </label>
+        <input type="number" name="rating" step="any" required>
+      </div>
+
+      <div class="form-group">
+        <label>SOP Strength (1.0 to 5.0) 
+          <button class="tooltip-icon" type="button">i</button>
+          <div class="tooltip-text">Strength of your Statement of Purpose (1 to 5).</div>
+        </label>
+        <input type="number" name="sop" step="any" required>
+      </div>
+
+      <div class="form-group">
+        <label>LOR Strength (1.0 to 5.0) 
+          <button class="tooltip-icon" type="button">i</button>
+          <div class="tooltip-text">Strength of your Letter of Recommendation (1 to 5).</div>
+        </label>
+        <input type="number" name="lor" step="any" required>
+      </div>
+
+      <div class="form-group">
+        <label>Enter CGPA (0.0 to 10.0) 
+          <button class="tooltip-icon" type="button">i</button>
+          <div class="tooltip-text">Your final CGPA on a 10-point scale.</div>
+        </label>
+        <input type="number" name="cgpa" step="any" required>
+      </div>
+
+      <div class="form-group">
+        <label>Have Research Experience? (0 = No, 1 = Yes)
+          <button class="tooltip-icon" type="button">i</button>
+          <div class="tooltip-text">Enter 1 if you have research experience, else 0.</div>
+        </label>
+        <input type="number" name="research" step="1" min="0" max="1" required>
+      </div>
+
+      <input type="submit" value="Predict Admission Chance">
+    </form>
+
+    {% if result %}
+      <div class="result">{{ result }}</div>
+    {% endif %}
+  </div>
+</body>
+</html>
