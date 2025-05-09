@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Descriptive Statistics{% endblock %}
+{% block content %}
+<div class="bg-white p-8 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-4">Descriptive Statistics</h1>
+    <table class="w-full border-collapse border border-gray-300">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="border border-gray-300 p-2">Column</th>
+                <th class="border border-gray-300 p-2">Count</th>
+                <th class="border border-gray-300 p-2">Mean</th>
+                <th class="border border-gray-300 p-2">Std</th>
+                <th class="border border-gray-300 p-2">Min</th>
+                <th class="border border-gray-300 p-2">25%</th>
+                <th class="border border-gray-300 p-2">50%</th>
+                <th class="border border-gray-300 p-2">75%</th>
+                <th class="border border-gray-300 p-2">Max</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for col, stat in stats.items() %}
+            <tr>
+                <td class="border border-gray-300 p-2">{{ col }}</td>
+                <td class="border border-gray-300 p-2">{{ stat.count | default('N/A') }}</td>
+                <td class="border border-gray-300 p-2">{{ stat.mean | default('N/A') }}</td>
+                <td class="border border-gray-300 p-2">{{ stat.std | default('N/A') }}</td>
+                <td class="border border-gray-300 p-2">{{ stat.min | default('N/A') }}</td>
+                <td class="border border-gray-300 p-2">{{ stat['25%'] | default('N/A') }}</td>
+                <td class="border border-gray-300 p-2">{{ stat['50%'] | default('N/A') }}</td>
+                <td class="border border-gray-300 p-2">{{ stat['75%'] | default('N/A') }}</td>
+                <td class="border border-gray-300 p-2">{{ stat.max | default('N/A') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h2 class="text-xl font-semibold mt-4">Unique Values</h2>
+    <ul class="list-disc list-inside">
+        <li>Series Title: {{ unique_values.series_title }}</li>
+        <li>Director: {{ unique_values.director }}</li>
+        <li>Genres: {{ unique_values.genres }}</li>
+    </ul>
+</div>
+{% endblock %}

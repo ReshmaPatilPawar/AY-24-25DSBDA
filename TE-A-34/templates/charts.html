@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Charts{% endblock %}
+{% block content %}
+<div class="bg-white p-8 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-6">Visualizations</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Card 1: Top 10 Highest Rated Movies -->
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            <h2 class="text-lg font-semibold mb-2">Top 10 Highest Rated Movies</h2>
+            <img src="{{ url_for('static', filename='images/top_10_ratings.png') }}" alt="Top 10 Highest Rated Movies" class="w-full h-auto rounded">
+        </div>
+
+        <!-- Card 2: Number of Movies by Genre -->
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            <h2 class="text-lg font-semibold mb-2">Number of Movies by Genre (Top 15)</h2>
+            <img src="{{ url_for('static', filename='images/genre_count.png') }}" alt="Number of Movies by Genre" class="w-full h-auto rounded">
+        </div>
+
+        <!-- Card 3: Correlation Heatmap -->
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            <h2 class="text-lg font-semibold mb-2">Correlation Heatmap of Numerical Features</h2>
+            <img src="{{ url_for('static', filename='images/correlation_heatmap.png') }}" alt="Correlation Heatmap" class="w-full h-auto rounded">
+        </div>
+
+        <!-- Card 4: Top 5 Genres -->
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            <h2 class="text-lg font-semibold mb-2">Top 5 Genres</h2>
+            <img src="{{ url_for('static', filename='images/top_5_genres.png') }}" alt="Top 5 Genres" class="w-full h-auto rounded">
+        </div>
+    </div>
+    <a href="/" class="text-blue-600 hover:underline mt-6 inline-block">Back to Home</a>
+</div>
+{% endblock %}

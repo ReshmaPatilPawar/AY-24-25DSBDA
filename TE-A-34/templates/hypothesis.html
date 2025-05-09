@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Hypothesis Test{% endblock %}
+{% block content %}
+<div class="bg-white p-8 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-4">Hypothesis Test: Action vs. Comedy Budgets</h1>
+    <p class="mb-4">Do Action movies have a higher average budget (gross revenue as proxy) than Comedy movies?</p>
+    <ul class="list-disc list-inside mb-4">
+        <li><strong>T-statistic:</strong> {{ result.t_statistic }}</li>
+        <li><strong>P-value:</strong> {{ result.p_value }}</li>
+        <li><strong>Result:</strong> 
+            {% if result.significant %}
+            Reject the null hypothesis. There is evidence to suggest that Action movies have a significantly different average budget than Comedy movies.
+            {% else %}
+            Fail to reject the null hypothesis. There is not enough evidence to suggest that Action movies have a significantly different average budget than Comedy movies.
+            {% endif %}
+        </li>
+    </ul>
+</div>
+{% endblock %}

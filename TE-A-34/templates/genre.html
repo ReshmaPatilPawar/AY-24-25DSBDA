@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block title %}Top Movies by Genre{% endblock %}
+{% block content %}
+<div class="bg-white p-8 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-4">Top Movies by Genre</h1>
+    <form method="POST" class="mb-6">
+        <div class="mb-4">
+            <label for="genre" class="block text-sm font-medium text-gray-700">Select Genre:</label>
+            <select id="genre" name="genre" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                <option value="" {% if not genre_input %}selected{% endif %}>Choose a genre</option>
+                {% for option in genre_options %}
+                    <option value="{{ option }}" {% if genre_input == option %}selected{% endif %}>{{ option }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="top_n" class="block text-sm font-medium text-gray-700">Top N Movies (1-10):</label>
+            <input type="number" id="top_n" name="top_n" value="{{ top_n }}" min="1" max="10" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+        </div>
+        <div class="mb-4">
+            <label for="sort_by" class="block text-sm font-medium text-gray-700">Sort By:</label>
+            <select id="sort_by" name="sort_by" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                {% for option in sort_by_options %}
+                    <option value="{{ option }}" {% if sort_by == option %}selected{% endif %}>{{ option.replace('_', ' ').title() }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="sort_order" class="block text-sm font-medium text-gray-700">Sort Order:</label>
+            <select id="sort_order" name="sort_order" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                {% for option in sort_options %}
+                    <option value="{{ option }}" {% if sort_order == option %}selected{% endif %}>{{ option.title() }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-700">Search</button>
+    </form>
+
+    {% if movies is not none and movies.empty %}
+        <p class="text-red-600">No movies found for the selected genre.</p>
+    {% elif movies is not none %}
+        <h2 class="text-xl font-semibold mb-2">Top {{ top_n }} Movies in {{ genre_input }}</h2>
+        <table class="w-full border-collapse border border-gray-300 mb-6">
+            <thead>
+                <tr>
+                    <th class="border border-gray-300 p-2 bg-gray-500 text-white">Title</th>
+                    <th class="border border-gray-300 p-2 bg-gray-500 text-white">Genre</th>
+                    <th class="border border-gray-300 p-2 bg-gray-500 text-white">IMDB Rating</th>
+                    <th class="border border-gray-300 p-2 bg-gray-500 text-white">Runtime (min)</th>
+                    <th class="border border-gray-300 p-2 bg-gray-500 text-white">Gross (USD)</th>
+                    <th class="border border-gray-300 p-2 bg-gray-500 text-white">Votes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for index, movie in movies.iterrows() %}
+                    <tr>
+                        <td class="border border-gray-300 p-2">{{ movie['series_title'] }}</td>
+                        <td class="border border-gray-300 p-2">{{ movie['genre'] }}</td>
+                        <td class="border border-gray-300 p-2">{{ '%.1f' % movie['imdb_rating'] }}</td>
+                        <td class="border border-gray-300 p-2">{{ '%.0f' % movie['runtime'] }}</td>
+                        <td class="border border-gray-300 p-2">{{ '%.0f' % movie['gross']|default('N/A') }}</td>
+                        <td class="border border-gray-300 p-2">{{ '%.0f' % movie['no_of_votes'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <!-- Prediction Form -->
+    <h2 class="text-xl font-semibold mb-2 mt-6">Predict IMDB Rating</h2>
+    <form method="POST" class="mb-6">
+        <input type="hidden" name="predict" value="true">
+        <div class="mb-4">
+            <label for="pred_runtime" class="block text-sm font-medium text-gray-700">Runtime (minutes):</label>
+            <input type="number" id="pred_runtime" name="pred_runtime" step="0.1" required class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+        </div>
+        <div class="mb-4">
+            <label for="pred_gross" class="block text-sm font-medium text-gray-700">Gross Earnings (USD):</label>
+            <input type="number" id="pred_gross" name="pred_gross" step="0.1" required class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+        </div>
+        <div class="mb-4">
+            <label for="pred_votes" class="block text-sm font-medium text-gray-700">Number of Votes:</label>
+            <input type="number" id="pred_votes" name="pred_votes" step="1" required class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+        </div>
+        <button type="submit" class="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-700">Predict</button>
+    </form>
+    {% if prediction is not none %}
+        <h3 class="text-lg font-medium mb-2">Predicted Rating: {{ '%.2f' % prediction }}</h3>
+    {% endif %}
+    {% if pred_error %}
+        <p class="text-red-600">{{ pred_error }}</p>
+    {% endif %}
+
+    <a href="/" class="inline-block px-4 py-2 bg-gray-700 text-white font-medium rounded-md hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Back to Home</a>
+
+</div>
+{% endblock %}

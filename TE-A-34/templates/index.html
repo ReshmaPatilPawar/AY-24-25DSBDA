@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="bg-white p-8 rounded-lg shadow-md">
+    <h1 class="text-3xl font-bold mb-4">Welcome to IMDB Top 1000 Movies Analysis</h1>
+    <p class="text-lg mb-4">Explore the top 1000 IMDB movies with our interactive analysis tool.</p>
+    <ul class="list-disc list-inside space-y-2">
+        <li><a href="/overview" class="text-blue-600 hover:underline">Dataset Overview</a>: View dataset details.</li>
+        <li><a href="/statistics" class="text-blue-600 hover:underline">Descriptive Statistics</a>: See statistical summaries.</li>
+        <li><a href="/genre" class="text-blue-600 hover:underline">Top Movies by Genre</a>: Find top movies by genre.</li>
+        <li><a href="/hypothesis" class="text-blue-600 hover:underline">Hypothesis Test</a>: Compare Action vs. Comedy budgets.</li>
+    </ul>
+</div>
+{% endblock %}
